@@ -44,6 +44,8 @@
 		65B7FDF1294B63AF0052F601 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 65B7FDF0294B63AF0052F601 /* RxSwift */; };
 		65B7FDF4294B700E0052F601 /* PokemonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FDF3294B700E0052F601 /* PokemonListCell.swift */; };
 		65B7FDF5294B700E0052F601 /* PokemonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FDF3294B700E0052F601 /* PokemonListCell.swift */; };
+		65B7FDFB294BA5900052F601 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FDFA294BA5900052F601 /* ViewCode.swift */; };
+		65B7FDFC294BA5900052F601 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FDFA294BA5900052F601 /* ViewCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,7 @@
 		65B7FDE3294B4DE10052F601 /* PokemonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewModel.swift; sourceTree = "<group>"; };
 		65B7FDE7294B4E870052F601 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		65B7FDF3294B700E0052F601 /* PokemonListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListCell.swift; sourceTree = "<group>"; };
+		65B7FDFA294BA5900052F601 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,7 @@
 		65B7FDF9294BA48E0052F601 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				65B7FDFA294BA5900052F601 /* ViewCode.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -391,6 +395,7 @@
 				65B7FDCB294B3DCA0052F601 /* PokemonListMapper.swift in Sources */,
 				65B7FDC5294B3D1F0052F601 /* Endpoints.swift in Sources */,
 				65B7FDC8294B3D940052F601 /* RemotePokemonItem.swift in Sources */,
+				65B7FDFB294BA5900052F601 /* ViewCode.swift in Sources */,
 				65B7FDCE294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
 				65B7FDD3294B47BA0052F601 /* PokemonListViewController.swift in Sources */,
 				65B7FD77294A0BAE0052F601 /* SceneDelegate.swift in Sources */,
@@ -404,6 +409,7 @@
 				65B7FDC9294B3D940052F601 /* RemotePokemonItem.swift in Sources */,
 				65B7FDBC294A6B340052F601 /* PokemonListItem.swift in Sources */,
 				65B7FDB5294A4FAC0052F601 /* HTTPClient.swift in Sources */,
+				65B7FDFC294BA5900052F601 /* ViewCode.swift in Sources */,
 				65B7FDCF294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
 				65B7FDF5294B700E0052F601 /* PokemonListCell.swift in Sources */,
 				65B7FDE9294B4E870052F601 /* RootCoordinator.swift in Sources */,

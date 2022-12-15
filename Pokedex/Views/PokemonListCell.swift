@@ -7,23 +7,29 @@
 
 import UIKit
 
-protocol PokemonListCellDelegate {
-    func fetchImage(by id: Int, completion: @escaping (_ image: UIImage?) -> Void)
-}
-
 class PokemonListCell: UICollectionViewCell {
-    static let ID = "PokemonCell"
     
-    var delegate: PokemonListCellDelegate?
-    
-    func bind(data: PokemonListItem?, delegate: PokemonListCellDelegate?) {
-        if let pokemonData = data, let delegate = delegate {
-            self.pokemonName.text = pokemonData.name
+    func bind(data: PokemonListItem?) {
+        if let pokemonData = data {
+            let id = pokemonData.url.split(separator: "/").last ?? ""
             
-            self.delegate = delegate
+            self.pokemonName.text = pokemonData.name
+            self.pokemonId = String(id)
+            
+            loadPokemonImage()
         }
-
     }
+    
+    private var pokemonId: String?
+    
+    private lazy var containerView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
     
     private lazy var pokemonName: UILabel = {
         let label = UILabel()
@@ -42,34 +48,60 @@ class PokemonListCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(pokemonImageView)
-        addSubview(pokemonName)
-        configureUI()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    func configureUI(){
-        NSLayoutConstraint.activate([
-            pokemonImageView.topAnchor.constraint(equalTo: topAnchor),
-            pokemonImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            pokemonImageView.leftAnchor.constraint(equalTo: leftAnchor),
-            pokemonImageView.rightAnchor.constraint(equalTo: rightAnchor),
+
+    func loadPokemonImage(){
+        guard let pokemonId = pokemonId else {
+            return
+        }
+
+        let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(pokemonId).png"
+        guard let url = URL(string: imageURL) else { return }
+        self.pokemonImageView.sd_setImage(with: url)
             
-            pokemonName.topAnchor.constraint(equalTo: topAnchor),
-            pokemonName.bottomAnchor.constraint(equalTo: bottomAnchor),
-            pokemonName.leftAnchor.constraint(equalTo: leftAnchor),
-            pokemonName.rightAnchor.constraint(equalTo: rightAnchor)
-        ])
-        
-        contentView.layer.borderWidth = 3
-        contentView.layer.borderColor = UIColor.gray.cgColor
+    
+    }
+}
+
+// MARK: - Extensions
+extension PokemonListCell: ViewCode {
+    func buildHierarchy() {
+        containerView.addSubview(pokemonImageView)
+        containerView.addSubview(pokemonName)
+        contentView.addSubview(containerView)
     }
     
-    func updateCell(imageURL: String){
-        guard let url = URL(string: imageURL) else { return }
-//        self.pokemonImageView.sd_setImage(with: url)
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            pokemonImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+//            pokemonImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 80),
+            pokemonImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            pokemonImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            pokemonImageView.heightAnchor.constraint(equalToConstant: 50),
+            
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+        ])
+    }
+    
+    func applyAdditionalChanges() {
+//        contentView.layer.borderWidth = 3
+        contentView.layer.borderColor = UIColor.gray.cgColor
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+    }
+    
+}
+
+public extension UICollectionViewCell {
+    static var identifier: String {
+        return String(describing: self)
     }
 }
