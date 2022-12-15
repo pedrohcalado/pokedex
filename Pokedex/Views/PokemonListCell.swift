@@ -31,11 +31,19 @@ class PokemonListCell: UICollectionViewCell {
         return view
     }()
     
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [pokemonImageView, pokemonName])
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     private lazy var pokemonName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(12)
         label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
 
@@ -71,18 +79,22 @@ class PokemonListCell: UICollectionViewCell {
 // MARK: - Extensions
 extension PokemonListCell: ViewCode {
     func buildHierarchy() {
-        containerView.addSubview(pokemonImageView)
-        containerView.addSubview(pokemonName)
         contentView.addSubview(containerView)
+        containerView.addSubview(stackView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            pokemonImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            stackView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+//            pokemonImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
 //            pokemonImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 80),
-            pokemonImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            pokemonImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            pokemonImageView.heightAnchor.constraint(equalToConstant: 50),
+//            pokemonImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+//            pokemonImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            pokemonImageView.heightAnchor.constraint(equalToConstant: 80),
             
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
