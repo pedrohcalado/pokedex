@@ -7,3 +7,8 @@
 
 import Foundation
 
+protocol HTTPClient {
+    typealias Result = Swift.Result<(Data, HTTPURLResponse), Error>
+    
+    func getPokemonList(limit: Int, offset: Int, completion: @escaping (Result) -> Void)
+}
