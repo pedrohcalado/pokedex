@@ -39,6 +39,9 @@
 		65B7FDE5294B4DE10052F601 /* PokemonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FDE3294B4DE10052F601 /* PokemonListViewModel.swift */; };
 		65B7FDE8294B4E870052F601 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FDE7294B4E870052F601 /* RootCoordinator.swift */; };
 		65B7FDE9294B4E870052F601 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FDE7294B4E870052F601 /* RootCoordinator.swift */; };
+		65B7FDEC294B635A0052F601 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 65B7FDEB294B635A0052F601 /* SDWebImage */; };
+		65B7FDEF294B63AF0052F601 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 65B7FDEE294B63AF0052F601 /* RxCocoa */; };
+		65B7FDF1294B63AF0052F601 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 65B7FDF0294B63AF0052F601 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65B7FDEF294B63AF0052F601 /* RxCocoa in Frameworks */,
+				65B7FDEC294B635A0052F601 /* SDWebImage in Frameworks */,
+				65B7FDF1294B63AF0052F601 /* RxSwift in Frameworks */,
 				65B7FDB8294A52890052F601 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +235,9 @@
 			name = Pokedex;
 			packageProductDependencies = (
 				65B7FDB7294A52890052F601 /* Alamofire */,
+				65B7FDEB294B635A0052F601 /* SDWebImage */,
+				65B7FDEE294B63AF0052F601 /* RxCocoa */,
+				65B7FDF0294B63AF0052F601 /* RxSwift */,
 			);
 			productName = Pokedex;
 			productReference = 65B7FD71294A0BAE0052F601 /* Pokedex.app */;
@@ -304,6 +313,8 @@
 			mainGroup = 65B7FD68294A0BAE0052F601;
 			packageReferences = (
 				65B7FDB6294A52890052F601 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				65B7FDEA294B635A0052F601 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				65B7FDED294B63AF0052F601 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 65B7FD72294A0BAE0052F601 /* Products */;
 			projectDirPath = "";
@@ -716,6 +727,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		65B7FDEA294B635A0052F601 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		65B7FDED294B63AF0052F601 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -723,6 +750,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 65B7FDB6294A52890052F601 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		65B7FDEB294B635A0052F601 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65B7FDEA294B635A0052F601 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		65B7FDEE294B63AF0052F601 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65B7FDED294B63AF0052F601 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		65B7FDF0294B63AF0052F601 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65B7FDED294B63AF0052F601 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
