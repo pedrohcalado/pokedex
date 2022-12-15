@@ -19,7 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let viewModel = PokemonListViewModel(coordinator: self)
+        let client = AlamofireHTTPClient()
+        let service = RemotePokemonListLoader(client: client)
+        let viewModel = PokemonListViewModel(coordinator: self, service: service)
         let vc = PokemonListViewController(viewModel: viewModel)
         navigation = UINavigationController(rootViewController: vc)
         
