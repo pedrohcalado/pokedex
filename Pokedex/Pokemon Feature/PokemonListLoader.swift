@@ -9,5 +9,5 @@ import Foundation
 
 protocol PokemonListLoader {
     typealias Result = Swift.Result<[PokemonListItem], Error>
-    func loadPokemonList(completion: @escaping (Result) -> Void)
+    func loadPokemonList(offset: Int, limit: Int, completion: @escaping (Result) -> Void)
 }

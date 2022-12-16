@@ -12,12 +12,21 @@ import UIKit
 
 protocol PokemonListViewModelProtocol {
     func loadPokemons()
+    func loadPokemonsOnScrolling()
     var pokemonsList: Driver<[PokemonListItem]> { get }
 }
 
 final class PokemonListViewModel: PokemonListViewModelProtocol {
     private weak var coordinator: RootCoordinator?
     private var service: PokemonListLoader?
+    
+    private var offset = 0
+    
+    private var loadedPokemons: [PokemonListItem] = [] {
+        didSet {
+            pokemonsRelay.accept(loadedPokemons)
+        }
+    }
     
     private var pokemonsRelay = BehaviorRelay<[PokemonListItem]>(value: [])
     var pokemonsList: Driver<[PokemonListItem]> {
@@ -30,11 +39,25 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
     }
     
     func loadPokemons() {
-        service?.loadPokemonList(completion: { [weak self] result in
+        service?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
             switch result {
             case let .success(pokemons):
                 print(pokemons)
-                self?.pokemonsRelay.accept(pokemons)
+                self?.loadedPokemons.append(contentsOf: pokemons)
+            case .failure:
+                // FIX HERE
+                break
+            }
+        })
+    }
+    
+    func loadPokemonsOnScrolling() {
+        offset += 20
+        service?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
+            switch result {
+            case let .success(pokemons):
+                print(pokemons)
+                self?.loadedPokemons.append(contentsOf: pokemons)
             case .failure:
                 // FIX HERE
                 break

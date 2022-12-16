@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PokemonListCell: UICollectionViewCell {
     
@@ -71,8 +72,6 @@ class PokemonListCell: UICollectionViewCell {
         let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(pokemonId).png"
         guard let url = URL(string: imageURL) else { return }
         self.pokemonImageView.sd_setImage(with: url)
-            
-    
     }
 }
 

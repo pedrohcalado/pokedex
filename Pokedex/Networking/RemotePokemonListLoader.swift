@@ -8,8 +8,6 @@
 import Foundation
 
 final class RemotePokemonListLoader: PokemonListLoader {
-    private let offset: Int
-    private let limit: Int
     private let client: HTTPClient
 
     public enum Error: Swift.Error {
@@ -19,13 +17,11 @@ final class RemotePokemonListLoader: PokemonListLoader {
 
     typealias Result = PokemonListLoader.Result
 
-    init(offset: Int = 0, limit: Int = 20, client: HTTPClient) {
+    init(client: HTTPClient) {
         self.client = client
-        self.offset = offset
-        self.limit = limit
     }
 
-    func loadPokemonList(completion: @escaping (Result) -> Void) {
+    func loadPokemonList(offset: Int = 0, limit: Int = 20, completion: @escaping (Result) -> Void) {
         client.getPokemonList(limit: limit, offset: offset) { result in
             switch result {
             case let .success((data, response)):

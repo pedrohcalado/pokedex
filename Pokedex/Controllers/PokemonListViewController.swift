@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import SDWebImage
 
 class PokemonListViewController: UIViewController {
     private var viewModel: PokemonListViewModelProtocol?
@@ -25,6 +24,7 @@ class PokemonListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
         setupView()
         bindCollectionView()
     }
@@ -133,5 +133,16 @@ extension PokemonListViewController {
     //    }
 }
 
+extension PokemonListViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isDragging else { return }
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if (offsetY > contentHeight - scrollView.frame.height) {
+            viewModel?.loadPokemonsOnScrolling()
+        }
+    }
+}
 
 
