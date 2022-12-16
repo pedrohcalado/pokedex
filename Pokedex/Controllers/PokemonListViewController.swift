@@ -35,7 +35,7 @@ class PokemonListViewController: UIViewController {
     
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
-        searchController.searchBar.placeholder = "Enter pokemon name or id"
+        searchController.searchBar.placeholder = NSLocalizedString("search-controller-placeholder", comment: "")
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.returnKeyType = .search
         return searchController
@@ -72,7 +72,7 @@ extension PokemonListViewController: ViewCode {
     }
     
     func applyAdditionalChanges() {
-        navigationItem.title  = "Pokedex"
+        navigationItem.title  = NSLocalizedString("list-controller-title", comment: "")
         view.backgroundColor = .systemBackground
         navigationItem.searchController = searchController
         
