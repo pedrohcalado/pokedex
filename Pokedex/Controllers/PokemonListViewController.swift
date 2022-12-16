@@ -26,18 +26,19 @@ class PokemonListViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         setupView()
-        bindCollectionView()
+        bindViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         viewModel?.loadPokemons()
     }
     
-    private lazy var searchBar: UISearchController = {
-        let sb = UISearchController()
-        sb.searchBar.placeholder = "Enter pokemon name or id"
-        sb.searchBar.searchBarStyle = .minimal
-        return sb
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchBar.placeholder = "Enter pokemon name or id"
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.returnKeyType = .search
+        return searchController
     }()
     
     private lazy var collectionView: UICollectionView = {
@@ -73,35 +74,13 @@ extension PokemonListViewController: ViewCode {
     func applyAdditionalChanges() {
         navigationItem.title  = "Pokedex"
         view.backgroundColor = .systemBackground
-        searchBar.searchResultsUpdater = self
-        navigationItem.searchController = searchBar
-    }
-}
-
-extension PokemonListViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        //        guard let query = searchController.searchBar.text else { return }
+        navigationItem.searchController = searchController
         
-        
-        
-        //        let service = RemotePokemonListLoader(client: AlamofireHTTPClient())
-        //
-        //        service.loadPokemonList { [weak self] result in
-        //            switch result {
-        //            case let .success(pokemons):
-        //                self?.pokemonsList = pokemons
-        //                DispatchQueue.main.async {
-        //                    self?.pokemonListCollectionView.reloadData()
-        //                }
-        //            case .failure:
-        //                return
-        //            }
-        //        }
     }
 }
 
 extension PokemonListViewController {
-    func bindCollectionView() {
+    func bindViews() {
         viewModel?
             .pokemonsList
             .asObservable()
@@ -109,28 +88,24 @@ extension PokemonListViewController {
                 cell.bind(data: model)
             }.disposed(by: disposeBag)
         
-        //        viewModel?
-        //            .pokemonsList
-        //            .asObservable()
-        //            .subscribe(onNext: { [weak self] list in
-        //                pokemonListCollectionView.rx.
-        //            }).dispose()
+        searchController
+            .searchBar
+            .rx
+            .text
+            .orEmpty
+            .subscribe(onNext: { [weak self] result in
+                self?.viewModel?.filterPokemonsBy(result)
+            }).disposed(by: disposeBag)
+            
+        searchController
+            .searchBar
+            .rx
+            .cancelButtonClicked
+            .subscribe(onNext: { [weak self] _ in
+                self?.searchController.searchBar.text = nil
+                self?.viewModel?.loadPokemons()
+            }).disposed(by: disposeBag)
     }
-    
-    
-    //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //        return pokemonsList.count
-    //    }
-    //
-    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonListCell.ID, for: indexPath) as? PokemonListCell {
-    //            cell.backgroundColor = .darkGray
-    //
-    //            cell.updateCell(imageURL: pokemonsList[indexPath.row].url)
-    //            return cell
-    //        }
-    //        return UICollectionViewCell()
-    //    }
 }
 
 extension PokemonListViewController: UICollectionViewDelegate {

@@ -13,6 +13,7 @@ import UIKit
 protocol PokemonListViewModelProtocol {
     func loadPokemons()
     func loadPokemonsOnScrolling()
+    func filterPokemonsBy(_ text: String)
     var pokemonsList: Driver<[PokemonListItem]> { get }
 }
 
@@ -28,6 +29,12 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
         }
     }
     
+    private var filteredPokemons: [PokemonListItem] = [] {
+        didSet {
+            pokemonsRelay.accept(filteredPokemons)
+        }
+    }
+    
     private var pokemonsRelay = BehaviorRelay<[PokemonListItem]>(value: [])
     var pokemonsList: Driver<[PokemonListItem]> {
         return pokemonsRelay.asDriver(onErrorJustReturn: [])
@@ -39,6 +46,8 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
     }
     
     func loadPokemons() {
+        offset = 0
+        loadedPokemons = []
         service?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
             switch result {
             case let .success(pokemons):
@@ -63,5 +72,31 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
                 break
             }
         })
+    }
+    
+    func filterPokemonsBy(_ text: String) {
+        if text.isEmpty {
+            filteredPokemons = loadedPokemons
+            return
+        }
+        
+        let pokemons = loadedPokemons.filter {
+            $0.name.contains(text.lowercased()) ||
+            String($0.id).contains(text) }
+        
+        if pokemons.isEmpty {
+//            service?.getPokemon(by: text) { [weak self] result in
+//                switch result {
+//                case let .success(pokemon):
+//                    self?.filteredPokemons = [pokemon]
+//                case .failure:
+//                    // fix here
+//                    break
+//                }
+//            }
+        } else {
+            filteredPokemons = pokemons
+        }
+    
     }
 }

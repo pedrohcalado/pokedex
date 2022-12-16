@@ -12,16 +12,15 @@ class PokemonListCell: UICollectionViewCell {
     
     func bind(data: PokemonListItem?) {
         if let pokemonData = data {
-            let id = pokemonData.url.split(separator: "/").last ?? ""
-            
             self.pokemonName.text = pokemonData.name
-            self.pokemonId = String(id)
+            self.pokemonIdLabel.text = "#\(pokemonData.id)"
+            self.pokemonId = pokemonData.id
             
             loadPokemonImage()
         }
     }
     
-    private var pokemonId: String?
+    private var pokemonId: Int?
     
     private lazy var containerView: UIView = {
        let view = UIView()
@@ -33,7 +32,7 @@ class PokemonListCell: UICollectionViewCell {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [pokemonImageView, pokemonName])
+        let stack = UIStackView(arrangedSubviews: [pokemonIdLabel, pokemonImageView, pokemonName])
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -45,6 +44,15 @@ class PokemonListCell: UICollectionViewCell {
         label.font = label.font.withSize(12)
         label.textColor = .black
         label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var pokemonIdLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(12)
+        label.textColor = .black
+        label.textAlignment = .right
         return label
     }()
 
@@ -84,15 +92,11 @@ extension PokemonListCell: ViewCode {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4),
+            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -4),
+            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 4),
+            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -4),
             
-//            pokemonImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-//            pokemonImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 80),
-//            pokemonImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-//            pokemonImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             pokemonImageView.heightAnchor.constraint(equalToConstant: 80),
             
             containerView.topAnchor.constraint(equalTo: topAnchor),
@@ -103,7 +107,6 @@ extension PokemonListCell: ViewCode {
     }
     
     func applyAdditionalChanges() {
-//        contentView.layer.borderWidth = 3
         contentView.layer.borderColor = UIColor.gray.cgColor
         backgroundColor = .clear
         contentView.backgroundColor = .clear
