@@ -88,7 +88,8 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
             detailsLoader?.getPokemonDetails(by: text) { result in
                 switch result {
                 case let .success(pokemon):
-                    self.filteredPokemons = [PokemonListItem(name: pokemon.name, url: "https://pokeapi.co/api/v2/pokemon/\(pokemon.id)")]
+                    let url = Endpoints.pokemonDetails(by: String(pokemon.id)).url.absoluteString
+                    self.filteredPokemons = [PokemonListItem(name: pokemon.name, url: url)]
                 case .failure:
                     return
                 }
