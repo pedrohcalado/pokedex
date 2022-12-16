@@ -11,8 +11,3 @@ protocol PokemonListLoader {
     typealias Result = Swift.Result<[PokemonListItem], Error>
     func loadPokemonList(offset: Int, limit: Int, completion: @escaping (Result) -> Void)
 }
-
-protocol PokemonDetailLoader {
-    typealias Result = Swift.Result<[PokemonListItem], Error>
-    func getPokemonDetails(by text: String, completion: @escaping (Result) -> Void)
-}

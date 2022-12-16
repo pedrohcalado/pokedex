@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PokemonListViewController: UIViewController {
+final class PokemonListViewController: UIViewController {
     private var viewModel: PokemonListViewModelProtocol?
     private let disposeBag = DisposeBag()
     
