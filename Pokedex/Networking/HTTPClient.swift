@@ -11,4 +11,5 @@ protocol HTTPClient {
     typealias Result = Swift.Result<(Data, HTTPURLResponse), Error>
     
     func getPokemonList(limit: Int, offset: Int, completion: @escaping (Result) -> Void)
+    func getPokemonDetails(by text: String, completion: @escaping (Result) -> Void)
 }

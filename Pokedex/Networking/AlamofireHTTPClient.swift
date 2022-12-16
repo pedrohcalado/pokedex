@@ -33,4 +33,23 @@ class AlamofireHTTPClient: HTTPClient {
                 })
             }
     }
+    
+    func getPokemonDetails(by text: String, completion: @escaping (HTTPClient.Result) -> Void) {
+        let urlRequest = Endpoints.pokemonDetails(by: text).url
+        
+        AF.request(urlRequest)
+            .validate()
+            .response { result in
+                completion(Result {
+                    if let error = result.error {
+                        throw error
+                    } else if let data = result.data, let response = result.response {
+                        return (data, response)
+                    } else {
+                        throw UnexpectedValuesRepresentation()
+                    }
+                })
+            }
+    }
+    
 }

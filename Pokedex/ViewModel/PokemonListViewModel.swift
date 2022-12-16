@@ -19,7 +19,8 @@ protocol PokemonListViewModelProtocol {
 
 final class PokemonListViewModel: PokemonListViewModelProtocol {
     private weak var coordinator: RootCoordinator?
-    private var service: PokemonListLoader?
+    private var listLoader: PokemonListLoader?
+    private var detailsLoader: PokemonDetailsLoader?
     
     private var offset = 0
     
@@ -40,18 +41,18 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
         return pokemonsRelay.asDriver(onErrorJustReturn: [])
     }
     
-    init(coordinator: RootCoordinator?, service: PokemonListLoader) {
+    init(coordinator: RootCoordinator?, listLoader: PokemonListLoader, detailsLoader: PokemonDetailsLoader) {
         self.coordinator = coordinator
-        self.service = service
+        self.listLoader = listLoader
+        self.detailsLoader = detailsLoader
     }
     
     func loadPokemons() {
         offset = 0
         loadedPokemons = []
-        service?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
+        listLoader?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
             switch result {
             case let .success(pokemons):
-                print(pokemons)
                 self?.loadedPokemons.append(contentsOf: pokemons)
             case .failure:
                 // FIX HERE
@@ -62,10 +63,9 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
     
     func loadPokemonsOnScrolling() {
         offset += 20
-        service?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
+        listLoader?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
             switch result {
             case let .success(pokemons):
-                print(pokemons)
                 self?.loadedPokemons.append(contentsOf: pokemons)
             case .failure:
                 // FIX HERE
@@ -85,15 +85,14 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
             String($0.id).contains(text) }
         
         if pokemons.isEmpty {
-//            service?.getPokemon(by: text) { [weak self] result in
-//                switch result {
-//                case let .success(pokemon):
-//                    self?.filteredPokemons = [pokemon]
-//                case .failure:
-//                    // fix here
-//                    break
-//                }
-//            }
+            detailsLoader?.getPokemonDetails(by: text) { result in
+                switch result {
+                case let .success(pokemon):
+                    self.filteredPokemons = [PokemonListItem(name: pokemon.name, url: "https://pokeapi.co/api/v2/pokemon/\(pokemon.id)")]
+                case .failure:
+                    return
+                }
+            }
         } else {
             filteredPokemons = pokemons
         }

@@ -34,7 +34,7 @@ struct Endpoints {
     
     static func pokemonDetails(by text: String) -> Endpoints {
         return Endpoints(
-            path: "pokemon\(text)",
+            path: "pokemon/\(text)",
             queryItems: nil
         )
     }
