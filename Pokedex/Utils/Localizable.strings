@@ -1,2 +1,5 @@
 "search-controller-placeholder" = "Enter pokemon name or id";
 "list-controller-title" = "Pokedex";
+"error-message" = "An error occurred when loading Pokemons.";
+"try-again-message" = "Please, try again.";
+"ok" = "OK";

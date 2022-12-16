@@ -149,9 +149,23 @@ extension PokemonListViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.viewModel?.loadPokemons()
             }).disposed(by: disposeBag)
-
     }
 }
+
+extension PokemonListViewController {
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("error-message", comment: ""),
+            message: NSLocalizedString("try-again-message", comment: ""),
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .cancel)
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+    }
+}
+
+// MARK: - Delegates
 
 extension PokemonListViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -165,12 +179,3 @@ extension PokemonListViewController: UICollectionViewDelegate {
     }
 }
 
-extension PokemonListViewController {
-    private func showAlert() {
-        let alert = UIAlertController(title: "An error ocurred when loading Pokemons", message: "Please, try again.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel)
-        
-        alert.addAction(okAction)
-        self.present(alert, animated: true)
-    }
-}
