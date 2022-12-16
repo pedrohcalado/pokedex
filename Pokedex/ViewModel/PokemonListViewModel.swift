@@ -94,11 +94,11 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
             return
         }
         
-        let pokemons = loadedPokemons.filter {
+        filteredPokemons = loadedPokemons.filter {
             $0.name.contains(text.lowercased()) ||
             String($0.id).contains(text) }
         
-        if pokemons.isEmpty {
+        if filteredPokemons.isEmpty {
             detailsLoader?.getPokemonDetails(by: text) { result in
                 switch result {
                 case let .success(pokemon):
@@ -108,8 +108,6 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
                     return
                 }
             }
-        } else {
-            filteredPokemons = pokemons
         }
     
     }
