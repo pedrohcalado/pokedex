@@ -15,6 +15,8 @@ protocol PokemonListViewModelProtocol {
     func loadPokemonsOnScrolling()
     func filterPokemonsBy(_ text: String)
     var pokemonsList: Driver<[PokemonListItem]> { get }
+    var errorDriver: Driver<Bool> { get }
+    var isLoadingDriver: Driver<Bool> { get }
 }
 
 final class PokemonListViewModel: PokemonListViewModelProtocol {
@@ -41,6 +43,16 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
         return pokemonsRelay.asDriver(onErrorJustReturn: [])
     }
     
+    private var errorRelay = BehaviorRelay<Bool>(value: false)
+    var errorDriver: Driver<Bool> {
+        return errorRelay.asDriver(onErrorJustReturn: false)
+    }
+    
+    private var isLoadingRelay = BehaviorRelay<Bool>(value: false)
+    var isLoadingDriver: Driver<Bool> {
+        return isLoadingRelay.asDriver(onErrorJustReturn: false)
+    }
+    
     init(coordinator: RootCoordinator?, listLoader: PokemonListLoader, detailsLoader: PokemonDetailsLoader) {
         self.coordinator = coordinator
         self.listLoader = listLoader
@@ -50,27 +62,29 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
     func loadPokemons() {
         offset = 0
         loadedPokemons = []
+        isLoadingRelay.accept(true)
         listLoader?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
             switch result {
             case let .success(pokemons):
                 self?.loadedPokemons.append(contentsOf: pokemons)
             case .failure:
-                // FIX HERE
-                break
+                self?.errorRelay.accept(true)
             }
+            self?.isLoadingRelay.accept(false)
         })
     }
     
     func loadPokemonsOnScrolling() {
         offset += 20
+        isLoadingRelay.accept(true)
         listLoader?.loadPokemonList(offset: offset, limit: 20, completion: { [weak self] result in
             switch result {
             case let .success(pokemons):
                 self?.loadedPokemons.append(contentsOf: pokemons)
             case .failure:
-                // FIX HERE
-                break
+                self?.errorRelay.accept(true)
             }
+            self?.isLoadingRelay.accept(false)
         })
     }
     

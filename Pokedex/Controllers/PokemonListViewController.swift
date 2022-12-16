@@ -38,6 +38,7 @@ final class PokemonListViewController: UIViewController {
         searchController.searchBar.placeholder = NSLocalizedString("search-controller-placeholder", comment: "")
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.returnKeyType = .search
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchController
     }()
     
@@ -53,21 +54,38 @@ final class PokemonListViewController: UIViewController {
         return cv
     }()
     
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        return view
+    }()
+    
+    private lazy var reloadButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.image = UIImage(systemName: "arrow.clockwise")
+        return button
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [activityIndicatorView, collectionView])
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
 }
 
 // MARK: - Extensions
 
 extension PokemonListViewController: ViewCode {
     func buildHierarchy() {
-        view.addSubview(collectionView)
+        view.addSubview(stackView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
     
@@ -75,7 +93,7 @@ extension PokemonListViewController: ViewCode {
         navigationItem.title  = NSLocalizedString("list-controller-title", comment: "")
         view.backgroundColor = .systemBackground
         navigationItem.searchController = searchController
-        
+        navigationItem.rightBarButtonItem = reloadButton
     }
 }
 
@@ -105,6 +123,33 @@ extension PokemonListViewController {
                 self?.searchController.searchBar.text = nil
                 self?.viewModel?.loadPokemons()
             }).disposed(by: disposeBag)
+        
+        viewModel?
+            .errorDriver
+            .asObservable()
+            .subscribe(onNext: { [weak self] showAlert in
+                if showAlert {
+                    self?.showAlert()
+                }
+            }).disposed(by: disposeBag)
+            
+        viewModel?
+            .isLoadingDriver
+            .asObservable()
+            .subscribe(onNext: { [weak self] isLoading in
+                isLoading ?
+                self?.activityIndicatorView.startAnimating() :
+                self?.activityIndicatorView.stopAnimating()
+                
+            }).disposed(by: disposeBag)
+        
+        reloadButton
+            .rx
+            .tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel?.loadPokemons()
+            }).disposed(by: disposeBag)
+
     }
 }
 
@@ -120,4 +165,12 @@ extension PokemonListViewController: UICollectionViewDelegate {
     }
 }
 
-
+extension PokemonListViewController {
+    private func showAlert() {
+        let alert = UIAlertController(title: "An error ocurred when loading Pokemons", message: "Please, try again.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+    }
+}
