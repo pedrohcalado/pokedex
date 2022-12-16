@@ -149,6 +149,14 @@ extension PokemonListViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.viewModel?.loadPokemons()
             }).disposed(by: disposeBag)
+        
+        collectionView
+            .rx
+            .modelSelected(PokemonListItem.self)
+            .subscribe(onNext: { [weak self] data in
+                print(data)
+                self?.viewModel?.navigateToDetails()
+            }).disposed(by: disposeBag)
     }
 }
 

@@ -63,6 +63,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate: RootCoordinator {
     func navigateToDetails() {
-        
+        let viewModel = PokemonDetailsViewModel()
+        let viewController = PokemonDetailsViewController(viewModel: viewModel)
+        navigation?.pushViewController(viewController, animated: false)
     }
 }
