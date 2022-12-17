@@ -37,7 +37,9 @@ final class RemotePokemonDetailsLoader: PokemonDetailsLoader {
             let items = try PokemonDetailsMapper.map(data, from: response)
             let sprites = items.sprites
             let images = [sprites.backDefault, sprites.backFemale, sprites.backShiny, sprites.backShinyFemale, sprites.frontDefault, sprites.frontFemale, sprites.frontShiny, sprites.frontShinyFemale]
-            return .success(PokemonDetailsItem(id: items.id, name: items.name, images: images))
+            let stats = items.stats.reduce(into: [String: Int]()) { $0[$1.stat.name] = $1.baseStat }
+            
+            return .success(PokemonDetailsItem(id: items.id, name: items.name, images: images, stats: stats))
         } catch {
             return .failure(error)
         }

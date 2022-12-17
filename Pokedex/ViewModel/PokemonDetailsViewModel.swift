@@ -14,6 +14,7 @@ protocol PokemonDetailsViewModelProtocol {
     func getPokemonName() -> String
     func getPokemonNumber() -> String
     var pokemonImages: Driver<[String]> { get }
+    var pokemonStats: Driver<[String: Int]> { get }
 }
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
@@ -31,6 +32,11 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         return pokemonImagesRelay.asDriver(onErrorJustReturn: [])
     }
     
+    private var pokemonStatsRelay = BehaviorRelay<[String: Int]>(value: ["": 0])
+    var pokemonStats: Driver<[String: Int]> {
+        return pokemonStatsRelay.asDriver(onErrorJustReturn: ["": 0])
+    }
+    
     func loadPokemonDetails() {
         guard let id = pokemonListItem?.id else { return }
         detailsLoader?.getPokemonDetails(by: String(id)) { [weak self] result in
@@ -38,7 +44,7 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
             case let .success(pokemon):
                 guard let self = self else { return }
                 self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
-                print(pokemon.images)
+                print(pokemon.stats)
             case let .failure(error):
                 print(error)
             }
