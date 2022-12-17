@@ -60,6 +60,10 @@
 		65B7FE16294D373D0052F601 /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE14294D373C0052F601 /* PokemonDetailsViewController.swift */; };
 		65B7FE18294D37DF0052F601 /* PokemonDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE17294D37DF0052F601 /* PokemonDetailsViewModel.swift */; };
 		65B7FE19294D37DF0052F601 /* PokemonDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE17294D37DF0052F601 /* PokemonDetailsViewModel.swift */; };
+		65B7FE1D294DCEB60052F601 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1C294DCEB60052F601 /* CarouselCell.swift */; };
+		65B7FE1E294DCEB60052F601 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1C294DCEB60052F601 /* CarouselCell.swift */; };
+		65B7FE20294DCF230052F601 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1F294DCF230052F601 /* CarouselView.swift */; };
+		65B7FE21294DCF230052F601 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1F294DCF230052F601 /* CarouselView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +116,8 @@
 		65B7FE11294CCB410052F601 /* PokemonDetailsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsMapper.swift; sourceTree = "<group>"; };
 		65B7FE14294D373C0052F601 /* PokemonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewController.swift; sourceTree = "<group>"; };
 		65B7FE17294D37DF0052F601 /* PokemonDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewModel.swift; sourceTree = "<group>"; };
+		65B7FE1C294DCEB60052F601 /* CarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
+		65B7FE1F294DCF230052F601 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +255,7 @@
 		65B7FDF2294B6FEE0052F601 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				65B7FE1B294DCE750052F601 /* Carousel */,
 				65B7FDF3294B700E0052F601 /* PokemonListCell.swift */,
 			);
 			path = Views;
@@ -307,6 +314,15 @@
 				65B7FDBE294A6F220052F601 /* PokemonListLoader.swift */,
 			);
 			path = PokemonList;
+			sourceTree = "<group>";
+		};
+		65B7FE1B294DCE750052F601 /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				65B7FE1C294DCEB60052F601 /* CarouselCell.swift */,
+				65B7FE1F294DCF230052F601 /* CarouselView.swift */,
+			);
+			path = Carousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,6 +489,8 @@
 				65B7FE0A294CC73C0052F601 /* RemotePokemonDetailsLoader.swift in Sources */,
 				65B7FDCE294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
 				65B7FDD3294B47BA0052F601 /* PokemonListViewController.swift in Sources */,
+				65B7FE1D294DCEB60052F601 /* CarouselCell.swift in Sources */,
+				65B7FE20294DCF230052F601 /* CarouselView.swift in Sources */,
 				65B7FD77294A0BAE0052F601 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +512,7 @@
 				65B7FDC0294A6F220052F601 /* PokemonListLoader.swift in Sources */,
 				65B7FE16294D373D0052F601 /* PokemonDetailsViewController.swift in Sources */,
 				65B7FE10294CCAB40052F601 /* RemotePokemonDetails.swift in Sources */,
+				65B7FE1E294DCEB60052F601 /* CarouselCell.swift in Sources */,
 				65B7FDCC294B3DCA0052F601 /* PokemonListMapper.swift in Sources */,
 				65B7FD8C294A0BB30052F601 /* PokedexListEndToEndTests.swift in Sources */,
 				65B7FDC6294B3D1F0052F601 /* Endpoints.swift in Sources */,
@@ -502,6 +521,7 @@
 				65B7FDD4294B47BA0052F601 /* PokemonListViewController.swift in Sources */,
 				65B7FDC3294B3CE00052F601 /* AlamofireHTTPClient.swift in Sources */,
 				65B7FE0B294CC73C0052F601 /* RemotePokemonDetailsLoader.swift in Sources */,
+				65B7FE21294DCF230052F601 /* CarouselView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

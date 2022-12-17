@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 protocol PokemonDetailsViewModelProtocol {
     func loadPokemonDetails()
     func getPokemonName() -> String
     func getPokemonNumber() -> String
+    var pokemonImages: Driver<[String]> { get }
 }
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
@@ -23,12 +26,18 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         self.pokemonListItem = pokemonListItem
     }
     
+    private var pokemonImagesRelay = BehaviorRelay<[String]>(value: [])
+    var pokemonImages: Driver<[String]> {
+        return pokemonImagesRelay.asDriver(onErrorJustReturn: [])
+    }
+    
     func loadPokemonDetails() {
         guard let id = pokemonListItem?.id else { return }
-        detailsLoader?.getPokemonDetails(by: String(id)) { result in
+        detailsLoader?.getPokemonDetails(by: String(id)) { [weak self] result in
             switch result {
             case let .success(pokemon):
-                
+                guard let self = self else { return }
+                self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
                 print(pokemon.images)
             case let .failure(error):
                 print(error)
@@ -43,5 +52,9 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
     func getPokemonNumber() -> String {
         guard let id = pokemonListItem?.id else { return "" }
         return "#\(id)"
+    }
+    
+    private func imagesList(from images: [String?]) -> [String] {
+        return images.compactMap { $0 }
     }
 }
