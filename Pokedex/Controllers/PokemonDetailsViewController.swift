@@ -35,9 +35,10 @@ final class PokemonDetailsViewController: UIViewController {
     }
     
     private lazy var baseStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [carouselView])
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.backgroundColor = .brown
         return stack
     }()
     
@@ -61,17 +62,18 @@ final class PokemonDetailsViewController: UIViewController {
 extension PokemonDetailsViewController: ViewCode {
     func buildHierarchy() {
         view.addSubview(carouselView)
+        view.addSubview(baseStackView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-//            baseStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            baseStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            baseStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//            baseStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-            
+            baseStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            baseStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            baseStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            carouselView.heightAnchor.constraint(equalToConstant: 300),
+
             carouselView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            carouselView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            carouselView.bottomAnchor.constraint(equalTo: baseStackView.topAnchor),
             carouselView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             carouselView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])

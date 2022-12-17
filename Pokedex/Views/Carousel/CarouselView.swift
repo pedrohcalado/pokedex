@@ -80,7 +80,7 @@ private extension CarouselView {
     func setupPageControl() {
         addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.topAnchor.constraint(equalTo: carouselCollectionView.bottomAnchor, constant: 16).isActive = true
+        pageControl.bottomAnchor.constraint(equalTo: carouselCollectionView.bottomAnchor, constant: 20).isActive = true
         pageControl.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         pageControl.widthAnchor.constraint(equalToConstant: 150).isActive = true
         pageControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -118,7 +118,7 @@ extension CarouselView {
         pageControl.numberOfPages = imagesList.count
         
         carouselLayout.scrollDirection = .horizontal
-        carouselLayout.itemSize = .init(width: 300, height: 400)
+        carouselLayout.itemSize = .init(width: 300, height: 300)
         carouselLayout.sectionInset = .init(top: 0, left: cellPadding, bottom: 0, right: cellPadding)
         carouselLayout.minimumLineSpacing = frame.width - 300
         carouselCollectionView.collectionViewLayout = carouselLayout
