@@ -62,8 +62,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 extension SceneDelegate: RootCoordinator {
-    func navigateToDetails() {
-        let viewModel = PokemonDetailsViewModel()
+    func navigateToDetails(with pokemon: PokemonListItem) {
+        let client = AlamofireHTTPClient()
+        let detailsLoader = RemotePokemonDetailsLoader(client: client)
+        let viewModel = PokemonDetailsViewModel(detailsLoader: detailsLoader, pokemonListItem: pokemon)
         let viewController = PokemonDetailsViewController(viewModel: viewModel)
         navigation?.pushViewController(viewController, animated: false)
     }

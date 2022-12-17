@@ -13,7 +13,7 @@ import UIKit
 protocol PokemonListViewModelProtocol {
     func loadPokemons()
     func loadPokemonsOnScrolling()
-    func navigateToDetails()
+    func navigateToDetails(with model: PokemonListItem)
     func filterPokemonsBy(_ text: String)
     var pokemonsList: Driver<[PokemonListItem]> { get }
     var errorDriver: Driver<Bool> { get }
@@ -115,7 +115,7 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
 }
 
 extension PokemonListViewModel {
-    func navigateToDetails() {
-        coordinator?.navigateToDetails()
+    func navigateToDetails(with model: PokemonListItem) {
+        coordinator?.navigateToDetails(with: model)
     }
 }

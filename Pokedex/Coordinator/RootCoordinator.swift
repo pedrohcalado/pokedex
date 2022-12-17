@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RootCoordinator: AnyObject {
-    func navigateToDetails()
+    func navigateToDetails(with pokemon: PokemonListItem)
 }
