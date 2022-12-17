@@ -29,7 +29,7 @@ class CarouselView: UIView {
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.pageIndicatorTintColor = .gray
-        pageControl.currentPageIndicatorTintColor = .white
+        pageControl.currentPageIndicatorTintColor = .lightGray
         return pageControl
     }()
     
