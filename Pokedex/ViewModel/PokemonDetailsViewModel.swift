@@ -23,7 +23,18 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         self.pokemonListItem = pokemonListItem
     }
     
-    func loadPokemonDetails() {}
+    func loadPokemonDetails() {
+        guard let id = pokemonListItem?.id else { return }
+        detailsLoader?.getPokemonDetails(by: String(id)) { result in
+            switch result {
+            case let .success(pokemon):
+                
+                print(pokemon.images)
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
     
     func getPokemonName() -> String {
         return pokemonListItem?.name ?? ""
