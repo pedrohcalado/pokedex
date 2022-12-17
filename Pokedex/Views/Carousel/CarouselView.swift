@@ -74,7 +74,7 @@ private extension CarouselView {
         carouselCollectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         carouselCollectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         carouselCollectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        carouselCollectionView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        carouselCollectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
     func setupPageControl() {
