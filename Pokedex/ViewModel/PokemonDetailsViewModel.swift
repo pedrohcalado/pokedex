@@ -11,6 +11,7 @@ import RxCocoa
 
 protocol PokemonDetailsViewModelProtocol {
     func loadPokemonDetails()
+    func loadAbilityDescription()
     func getPokemonName() -> String
     func getPokemonNumber() -> String
     var pokemonImages: Driver<[String]> { get }
@@ -62,6 +63,10 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
                 self?.errorRelay.accept(true)
             }
         }
+    }
+    
+    func loadAbilityDescription() {
+        
     }
     
     func getPokemonName() -> String {

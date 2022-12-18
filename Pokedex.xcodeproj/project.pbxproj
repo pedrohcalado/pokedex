@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65745E31294F60370005F1AB /* AbilityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E30294F60370005F1AB /* AbilityDescriptionView.swift */; };
+		65745E32294F60370005F1AB /* AbilityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E30294F60370005F1AB /* AbilityDescriptionView.swift */; };
 		65B7FD75294A0BAE0052F601 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD74294A0BAE0052F601 /* AppDelegate.swift */; };
 		65B7FD77294A0BAE0052F601 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */; };
 		65B7FD7E294A0BB20052F601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B7FD7D294A0BB20052F601 /* Assets.xcassets */; };
@@ -88,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65745E30294F60370005F1AB /* AbilityDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDescriptionView.swift; sourceTree = "<group>"; };
 		65B7FD71294A0BAE0052F601 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B7FD74294A0BAE0052F601 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 				65B7FDF3294B700E0052F601 /* PokemonListCell.swift */,
 				65B8F95B294F1685006FA18C /* PokemonStatsView.swift */,
 				65B8F95E294F2657006FA18C /* PokemonAbilitiesView.swift */,
+				65745E30294F60370005F1AB /* AbilityDescriptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -487,6 +491,7 @@
 				65B7FDB4294A4FAC0052F601 /* HTTPClient.swift in Sources */,
 				65B7FDF4294B700E0052F601 /* PokemonListCell.swift in Sources */,
 				65B7FDCB294B3DCA0052F601 /* PokemonListMapper.swift in Sources */,
+				65745E31294F60370005F1AB /* AbilityDescriptionView.swift in Sources */,
 				65B7FDC5294B3D1F0052F601 /* Endpoints.swift in Sources */,
 				65B7FE15294D373D0052F601 /* PokemonDetailsViewController.swift in Sources */,
 				65B7FE05294CC6270052F601 /* PokemonDetailsItem.swift in Sources */,
@@ -526,6 +531,7 @@
 				65B7FE10294CCAB40052F601 /* RemotePokemonDetails.swift in Sources */,
 				65B7FE1E294DCEB60052F601 /* CarouselCell.swift in Sources */,
 				65B7FDCC294B3DCA0052F601 /* PokemonListMapper.swift in Sources */,
+				65745E32294F60370005F1AB /* AbilityDescriptionView.swift in Sources */,
 				65B7FD8C294A0BB30052F601 /* PokedexListEndToEndTests.swift in Sources */,
 				65B7FDC6294B3D1F0052F601 /* Endpoints.swift in Sources */,
 				65B7FE19294D37DF0052F601 /* PokemonDetailsViewModel.swift in Sources */,

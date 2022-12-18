@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol PokemonAbilitiesDelegate {
-    func showAbilityDescription(_ id: Int)
+    func showAbilityDescription(_ abilityId: Int)
 }
 
 final class PokemonAbilitiesView: UIView {
