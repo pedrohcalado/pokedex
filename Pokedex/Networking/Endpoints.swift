@@ -45,4 +45,10 @@ struct Endpoints {
             queryItems: nil)
     }
     
+    static func equivalentPokemons(by typeId: Int) -> Endpoints {
+        return Endpoints(
+            path: "type/\(typeId)",
+            queryItems: nil)
+    }
+    
 }

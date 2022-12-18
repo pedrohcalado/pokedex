@@ -70,4 +70,22 @@ class AlamofireHTTPClient: HTTPClient {
             }
     }
     
+    func getEquivalentPokemons(by typeId: Int, completion: @escaping (HTTPClient.Result) -> Void) {
+        let urlRequest = Endpoints.equivalentPokemons(by: typeId).url
+        
+        AF.request(urlRequest)
+            .validate()
+            .response { result in
+                completion(Result {
+                    if let error = result.error {
+                        throw error
+                    } else if let data = result.data, let response = result.response {
+                        return (data, response)
+                    } else {
+                        throw UnexpectedValuesRepresentation()
+                    }
+                })
+            }
+    }
+    
 }
