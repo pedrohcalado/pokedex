@@ -65,8 +65,21 @@ extension SceneDelegate: RootCoordinator {
     func navigateToDetails(with pokemon: PokemonListItem) {
         let client = AlamofireHTTPClient()
         let detailsLoader = RemotePokemonDetailsLoader(client: client)
-        let viewModel = PokemonDetailsViewModel(detailsLoader: detailsLoader, pokemonListItem: pokemon)
+        let viewModel = PokemonDetailsViewModel(detailsLoader: detailsLoader, pokemonListItem: pokemon, coordinator: self)
         let viewController = PokemonDetailsViewController(viewModel: viewModel)
         navigation?.pushViewController(viewController, animated: false)
+    }
+    
+    func showAbilityDescription(_ id: Int) {
+        let client = AlamofireHTTPClient()
+        let loader = RemoteAbilitiesLoader(client: client)
+        let viewModel = AbilityDescriptionViewModel(id: id, abilitiesLoader: loader)
+        let abilityDescriptionVC = AbilityDescriptionViewController(abilityId: id, viewModel: viewModel)
+        if let sheet = abilityDescriptionVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        guard let vc = navigation?.viewControllers.last else { return }
+        
+        vc.present(abilityDescriptionVC, animated: true)
     }
 }
