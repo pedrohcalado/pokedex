@@ -66,6 +66,8 @@
 		65B7FE21294DCF230052F601 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1F294DCF230052F601 /* CarouselView.swift */; };
 		65B8F95C294F1685006FA18C /* PokemonStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B8F95B294F1685006FA18C /* PokemonStatsView.swift */; };
 		65B8F95D294F1685006FA18C /* PokemonStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B8F95B294F1685006FA18C /* PokemonStatsView.swift */; };
+		65B8F95F294F2657006FA18C /* PokemonAbilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B8F95E294F2657006FA18C /* PokemonAbilitiesView.swift */; };
+		65B8F960294F2658006FA18C /* PokemonAbilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B8F95E294F2657006FA18C /* PokemonAbilitiesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,7 @@
 		65B7FE1C294DCEB60052F601 /* CarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
 		65B7FE1F294DCF230052F601 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		65B8F95B294F1685006FA18C /* PokemonStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonStatsView.swift; sourceTree = "<group>"; };
+		65B8F95E294F2657006FA18C /* PokemonAbilitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAbilitiesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +264,7 @@
 				65B7FE1B294DCE750052F601 /* Carousel */,
 				65B7FDF3294B700E0052F601 /* PokemonListCell.swift */,
 				65B8F95B294F1685006FA18C /* PokemonStatsView.swift */,
+				65B8F95E294F2657006FA18C /* PokemonAbilitiesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65B7FDBB294A6B340052F601 /* PokemonListItem.swift in Sources */,
+				65B8F95F294F2657006FA18C /* PokemonAbilitiesView.swift in Sources */,
 				65B7FE12294CCB410052F601 /* PokemonDetailsMapper.swift in Sources */,
 				65B7FDC2294B3CDF0052F601 /* AlamofireHTTPClient.swift in Sources */,
 				65B7FDBF294A6F220052F601 /* PokemonListLoader.swift in Sources */,
@@ -509,6 +514,7 @@
 				65B7FDBC294A6B340052F601 /* PokemonListItem.swift in Sources */,
 				65B7FDB5294A4FAC0052F601 /* HTTPClient.swift in Sources */,
 				65B7FDFC294BA5900052F601 /* ViewCode.swift in Sources */,
+				65B8F960294F2658006FA18C /* PokemonAbilitiesView.swift in Sources */,
 				65B7FDCF294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
 				65B7FE13294CCB420052F601 /* PokemonDetailsMapper.swift in Sources */,
 				65B7FDF5294B700E0052F601 /* PokemonListCell.swift in Sources */,

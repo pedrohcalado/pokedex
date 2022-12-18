@@ -48,8 +48,9 @@ final class PokemonDetailsViewController: UIViewController {
     }()
     
     private lazy var baseStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [statsView])
+        let stack = UIStackView(arrangedSubviews: [abilitiesView, statsView])
         stack.axis = .vertical
+        stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -57,6 +58,11 @@ final class PokemonDetailsViewController: UIViewController {
     private lazy var statsView: PokemonStatsView = {
         let statsView = PokemonStatsView()
         return statsView
+    }()
+    
+    private lazy var abilitiesView: PokemonAbilitiesView = {
+        let abilitiesView = PokemonAbilitiesView()
+        return abilitiesView
     }()
     
 }
@@ -105,6 +111,13 @@ extension PokemonDetailsViewController {
             .asObservable()
             .bind(onNext: { [weak self] stats in
                 self?.statsView.setStats(to: stats)
+            }).disposed(by: disposeBag)
+        
+        viewModel?
+            .pokemonAbilities
+            .asObservable()
+            .bind(onNext: { [weak self] abilities in
+                self?.abilitiesView.setAbilities(to: abilities)
             }).disposed(by: disposeBag)
         
         viewModel?
