@@ -7,11 +7,20 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
+
+protocol PokemonAbilitiesDelegate {
+    func showAbilityDescription(_ id: Int)
+}
 
 final class PokemonAbilitiesView: UIView {
+    var delegate: PokemonAbilitiesDelegate?
+    let disposeBag = DisposeBag()
     
-    init() {
+    init(delegate: PokemonAbilitiesDelegate?) {
         super.init(frame: .zero)
+        self.delegate = delegate
         setupView()
     }
     
@@ -56,8 +65,19 @@ final class PokemonAbilitiesView: UIView {
                 return button
             }()
             
+            bindButton(abilityButton, id: ability.id)
+            
             abilitiesStackView.addArrangedSubview(abilityButton)
         }
+    }
+    
+    private func bindButton(_ button: UIButton, id: Int) {
+        button
+            .rx
+            .tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.delegate?.showAbilityDescription(id)
+            }).disposed(by: disposeBag)
     }
 }
 

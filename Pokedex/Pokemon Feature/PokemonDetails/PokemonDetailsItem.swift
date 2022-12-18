@@ -26,9 +26,11 @@ struct PokemonDetailsItem: Codable {
 struct PokemonDetailsAbility: Codable {
     let name: String
     let url: String
+    let id: Int
     
     init(name: String, url: String) {
         self.name = name
         self.url = url
+        self.id = Int(url.split(separator: "/").last ?? "") ?? 0
     }
 }
