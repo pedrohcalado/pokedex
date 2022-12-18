@@ -13,3 +13,4 @@
 "speed" = "SPD: ";
 "abilities-title" = "Abilities";
 "ability-description-title" = "Ability description";
+"ability-error-message" = "An error occurred when loading ability description.";

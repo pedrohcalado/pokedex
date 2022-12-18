@@ -94,5 +94,27 @@ class AbilityDescriptionViewController: UIViewController, ViewCode {
             .subscribe(onNext: { [weak self] description in
                 self?.abilityDescription.text = description
             }).disposed(by: disposeBag)
+        
+        viewModel?
+            .errorDriver
+            .asObservable()
+            .subscribe(onNext: { [weak self] showAlert in
+                if showAlert {
+                    self?.showAlert()
+                }
+            }).disposed(by: disposeBag)
+    }
+}
+
+extension AbilityDescriptionViewController {
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("ability-error-message", comment: ""),
+            message: NSLocalizedString("try-again-message", comment: ""),
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .cancel)
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
     }
 }
