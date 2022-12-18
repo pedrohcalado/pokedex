@@ -64,6 +64,8 @@
 		65B7FE1E294DCEB60052F601 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1C294DCEB60052F601 /* CarouselCell.swift */; };
 		65B7FE20294DCF230052F601 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1F294DCF230052F601 /* CarouselView.swift */; };
 		65B7FE21294DCF230052F601 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FE1F294DCF230052F601 /* CarouselView.swift */; };
+		65B8F95C294F1685006FA18C /* PokemonStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B8F95B294F1685006FA18C /* PokemonStatsView.swift */; };
+		65B8F95D294F1685006FA18C /* PokemonStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B8F95B294F1685006FA18C /* PokemonStatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,7 @@
 		65B7FE17294D37DF0052F601 /* PokemonDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewModel.swift; sourceTree = "<group>"; };
 		65B7FE1C294DCEB60052F601 /* CarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
 		65B7FE1F294DCF230052F601 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		65B8F95B294F1685006FA18C /* PokemonStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonStatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +260,7 @@
 			children = (
 				65B7FE1B294DCE750052F601 /* Carousel */,
 				65B7FDF3294B700E0052F601 /* PokemonListCell.swift */,
+				65B8F95B294F1685006FA18C /* PokemonStatsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -487,6 +491,7 @@
 				65B7FDFB294BA5900052F601 /* ViewCode.swift in Sources */,
 				65B7FE0F294CCAB40052F601 /* RemotePokemonDetails.swift in Sources */,
 				65B7FE0A294CC73C0052F601 /* RemotePokemonDetailsLoader.swift in Sources */,
+				65B8F95C294F1685006FA18C /* PokemonStatsView.swift in Sources */,
 				65B7FDCE294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
 				65B7FDD3294B47BA0052F601 /* PokemonListViewController.swift in Sources */,
 				65B7FE1D294DCEB60052F601 /* CarouselCell.swift in Sources */,
@@ -511,6 +516,7 @@
 				65B7FE03294CC4830052F601 /* PokemonDetailsLoader.swift in Sources */,
 				65B7FDC0294A6F220052F601 /* PokemonListLoader.swift in Sources */,
 				65B7FE16294D373D0052F601 /* PokemonDetailsViewController.swift in Sources */,
+				65B8F95D294F1685006FA18C /* PokemonStatsView.swift in Sources */,
 				65B7FE10294CCAB40052F601 /* RemotePokemonDetails.swift in Sources */,
 				65B7FE1E294DCEB60052F601 /* CarouselCell.swift in Sources */,
 				65B7FDCC294B3DCA0052F601 /* PokemonListMapper.swift in Sources */,

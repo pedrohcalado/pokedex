@@ -48,34 +48,15 @@ final class PokemonDetailsViewController: UIViewController {
     }()
     
     private lazy var baseStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [baseStatsStackView])
+        let stack = UIStackView(arrangedSubviews: [statsView])
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    private lazy var baseStatsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [statsSectionTitle, statsValuesStackView])
-        stack.axis = .vertical
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    private lazy var statsSectionTitle: UILabel = {
-        let title = UILabel()
-        title.text = NSLocalizedString("stats-title", comment: "")
-        title.textAlignment = .center
-        title.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        title.translatesAutoresizingMaskIntoConstraints = false
-        return title
-    }()
-    
-    private lazy var statsValuesStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .equalSpacing
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+    private lazy var statsView: PokemonStatsView = {
+        let statsView = PokemonStatsView()
+        return statsView
     }()
     
 }
@@ -94,15 +75,11 @@ extension PokemonDetailsViewController: ViewCode {
             carouselView.bottomAnchor.constraint(equalTo: baseStackView.topAnchor),
             carouselView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             carouselView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            carouselView.heightAnchor.constraint(equalToConstant: 300),
             
             baseStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             baseStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             baseStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            carouselView.heightAnchor.constraint(equalToConstant: 300),
-
-            
-            statsValuesStackView.leadingAnchor.constraint(equalTo: baseStackView.leadingAnchor, constant: 16),
-            statsValuesStackView.trailingAnchor.constraint(equalTo: baseStackView.trailingAnchor, constant: -16),
         ])
     }
     
@@ -127,41 +104,7 @@ extension PokemonDetailsViewController {
             .pokemonStats
             .asObservable()
             .bind(onNext: { [weak self] stats in
-                self?.setUpStatsLabel(stats)
+                self?.statsView.setStats(to: stats)
             }).disposed(by: disposeBag)
-    }
-    
-    func setUpStatsLabel(_ stats: [String: Int]) {
-        stats.forEach { stat, value in
-            guard !stat.isEmpty else { return }
-            
-            let statsLabel: UILabel = {
-                let label = UILabel()
-                label.textAlignment = .center
-                label.text = NSLocalizedString(stat, comment: "")
-                label.font = UIFont.systemFont(ofSize: 14)
-                label.translatesAutoresizingMaskIntoConstraints = false
-                return label
-            }()
-            
-            let valueLabel: UILabel = {
-                let label = UILabel()
-                label.textAlignment = .center
-                label.text = "\(value)"
-                label.font = UIFont.systemFont(ofSize: 14)
-                label.translatesAutoresizingMaskIntoConstraints = false
-                return label
-            }()
-
-            let singleStatStackView: UIStackView = {
-                let stack = UIStackView(arrangedSubviews: [statsLabel, valueLabel])
-                stack.axis = .horizontal
-                stack.distribution = .equalSpacing
-                stack.translatesAutoresizingMaskIntoConstraints = false
-                return stack
-            }()
-            
-            statsValuesStackView.addArrangedSubview(singleStatStackView)
-        }
     }
 }
