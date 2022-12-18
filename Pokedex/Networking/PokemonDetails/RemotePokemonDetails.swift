@@ -13,6 +13,7 @@ struct RemotePokemonDetails: Codable {
     let sprites: Sprites
     let stats: [Stats]
     let abilities: [Ability]
+    let types: [PokemonType]
 }
 
 struct Sprites: Codable {
@@ -55,6 +56,15 @@ struct Ability: Codable {
     let ability: AbilityDetails
     
     struct AbilityDetails: Codable {
+        let name: String
+        let url: String
+    }
+}
+
+struct PokemonType: Codable {
+    let type: TypeDetails
+    
+    struct TypeDetails: Codable {
         let name: String
         let url: String
     }

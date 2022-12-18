@@ -13,13 +13,15 @@ struct PokemonDetailsItem: Codable {
     let images: [String?]
     let stats: [String: Int]
     let abilities: [PokemonDetailsAbility]
+    let types: [PokemonDetailsType]
     
-    init(id: Int, name: String, images: [String?], stats: [String: Int], abilities: [PokemonDetailsAbility]) {
+    init(id: Int, name: String, images: [String?], stats: [String: Int], abilities: [PokemonDetailsAbility], types: [PokemonDetailsType]) {
         self.id = id
         self.name = name
         self.images = images
         self.stats = stats
         self.abilities = abilities
+        self.types = types
     }
 }
 
@@ -32,5 +34,17 @@ struct PokemonDetailsAbility: Codable {
         self.name = name
         self.url = url
         self.id = Int(url.split(separator: "/").last ?? "") ?? 0
+    }
+}
+
+struct PokemonDetailsType: Codable {
+    let id: Int
+    let type: String
+    let url: String
+    
+    init(type: String, url: String) {
+        self.id = Int(url.split(separator: "/").last ?? "") ?? 0
+        self.type = type
+        self.url = url
     }
 }
