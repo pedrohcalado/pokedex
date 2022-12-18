@@ -39,4 +39,10 @@ struct Endpoints {
         )
     }
     
+    static func abilityDescription(by id: Int) -> Endpoints {
+        return Endpoints(
+            path: "ability/\(id)",
+            queryItems: nil)
+    }
+    
 }

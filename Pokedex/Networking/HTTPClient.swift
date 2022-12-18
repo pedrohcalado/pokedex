@@ -12,4 +12,5 @@ protocol HTTPClient {
     
     func getPokemonList(limit: Int, offset: Int, completion: @escaping (Result) -> Void)
     func getPokemonDetails(by text: String, completion: @escaping (Result) -> Void)
+    func getAbilityDescription(by id: Int, completion: @escaping (Result) -> Void)
 }
