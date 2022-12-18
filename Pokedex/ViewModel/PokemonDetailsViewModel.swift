@@ -44,6 +44,7 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
             case let .success(pokemon):
                 guard let self = self else { return }
                 self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
+                self.pokemonStatsRelay.accept(pokemon.stats)
                 print(pokemon.stats)
             case let .failure(error):
                 print(error)

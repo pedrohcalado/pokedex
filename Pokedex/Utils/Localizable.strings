@@ -3,3 +3,11 @@
 "error-message" = "An error occurred when loading Pokemons.";
 "try-again-message" = "Please, try again.";
 "ok" = "OK";
+"stats-title" = "Base Stats";
+"hp" = "HP: ";
+"attack" = "ATK: ";
+"defense" = "DEF: ";
+"special-attack" = "SATK: ";
+"special-defense" = "SDEF: ";
+"speed" = "SPD: ";
+
