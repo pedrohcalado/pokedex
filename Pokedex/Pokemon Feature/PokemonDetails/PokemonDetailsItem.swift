@@ -39,12 +39,12 @@ struct PokemonDetailsAbility: Codable {
 
 struct PokemonDetailsType: Codable {
     let id: Int
-    let type: String
+    let name: String
     let url: String
     
-    init(type: String, url: String) {
+    init(name: String, url: String) {
         self.id = Int(url.split(separator: "/").last ?? "") ?? 0
-        self.type = type
+        self.name = name
         self.url = url
     }
 }

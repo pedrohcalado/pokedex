@@ -18,6 +18,7 @@ protocol PokemonDetailsViewModelProtocol {
     var pokemonStats: Driver<[String: Int]> { get }
     var errorDriver: Driver<Bool> { get }
     var pokemonAbilities: Driver<[PokemonDetailsAbility]> { get }
+    var pokemonTypes: Driver<[PokemonDetailsType]> { get }
 }
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
@@ -46,6 +47,11 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         return pokemonAbilitiesRelay.asDriver(onErrorJustReturn: [])
     }
     
+    private var pokemonTypesRelay = BehaviorRelay<[PokemonDetailsType]>(value: [])
+    var pokemonTypes: Driver<[PokemonDetailsType]> {
+        return pokemonTypesRelay.asDriver(onErrorJustReturn: [])
+    }
+    
     private var errorRelay = BehaviorRelay<Bool>(value: false)
     var errorDriver: Driver<Bool> {
         return errorRelay.asDriver(onErrorJustReturn: false)
@@ -60,6 +66,7 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
                 self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
                 self.pokemonStatsRelay.accept(pokemon.stats)
                 self.pokemonAbilitiesRelay.accept(pokemon.abilities)
+                self.pokemonTypesRelay.accept(pokemon.types)
             case .failure:
                 self?.errorRelay.accept(true)
             }
