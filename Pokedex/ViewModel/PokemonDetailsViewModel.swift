@@ -11,7 +11,7 @@ import RxCocoa
 
 protocol PokemonDetailsViewModelProtocol {
     func loadPokemonDetails()
-    func loadAbilityDescription()
+    func showAbilityDescription(_ abilityId: Int)
     func getPokemonName() -> String
     func getPokemonNumber() -> String
     var pokemonImages: Driver<[String]> { get }
@@ -21,13 +21,14 @@ protocol PokemonDetailsViewModelProtocol {
 }
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
-    
+    private weak var coordinator: RootCoordinator?
     private var detailsLoader: PokemonDetailsLoader?
     private var pokemonListItem: PokemonListItem?
     
-    init(detailsLoader: PokemonDetailsLoader, pokemonListItem: PokemonListItem) {
+    init(detailsLoader: PokemonDetailsLoader, pokemonListItem: PokemonListItem, coordinator: RootCoordinator) {
         self.detailsLoader = detailsLoader
         self.pokemonListItem = pokemonListItem
+        self.coordinator = coordinator
     }
     
     private var pokemonImagesRelay = BehaviorRelay<[String]>(value: [])
@@ -65,8 +66,8 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         }
     }
     
-    func loadAbilityDescription() {
-        
+    func showAbilityDescription(_ abilityId: Int) {
+        coordinator?.showAbilityDescription(abilityId)
     }
     
     func getPokemonName() -> String {

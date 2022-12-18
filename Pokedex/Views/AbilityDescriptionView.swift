@@ -7,10 +7,14 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class AbilityDescriptionViewController: UIViewController, ViewCode {
+    let disposeBag = DisposeBag()
+    
     func buildHierarchy() {
         view.addSubview(containerView)
+        containerView.addSubview(abilityDescriptionTitle)
         containerView.addSubview(abilityDescription)
     }
     
@@ -21,9 +25,13 @@ class AbilityDescriptionViewController: UIViewController, ViewCode {
             containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
-            abilityDescription.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 20),
-            abilityDescription.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
-            abilityDescription.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
+            abilityDescriptionTitle.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 20),
+            abilityDescriptionTitle.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
+            abilityDescriptionTitle.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
+            
+            abilityDescription.topAnchor.constraint(equalTo: abilityDescriptionTitle.topAnchor, constant: 50),
+            abilityDescription.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            abilityDescription.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ])
     }
     
@@ -31,9 +39,9 @@ class AbilityDescriptionViewController: UIViewController, ViewCode {
         view.backgroundColor = .white
     }
     
-    private var viewModel: PokemonDetailsViewModelProtocol?
+    private var viewModel: AbilityDescriptionViewModelProtocol?
     
-    init(abilityId: Int, viewModel: PokemonDetailsViewModelProtocol) {
+    init(abilityId: Int, viewModel: AbilityDescriptionViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -44,6 +52,7 @@ class AbilityDescriptionViewController: UIViewController, ViewCode {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViews()
         setupView()
     }
     
@@ -58,14 +67,32 @@ class AbilityDescriptionViewController: UIViewController, ViewCode {
         return view
     }()
     
+    private lazy var abilityDescriptionTitle: UILabel = {
+        let title = UILabel()
+        title.text = NSLocalizedString("ability-description-title", comment: "")
+        title.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        title.textColor = .black
+        title.textAlignment = .center
+        title.translatesAutoresizingMaskIntoConstraints = false
+        return title
+    }()
+    
     private lazy var abilityDescription: UILabel = {
         let description = UILabel()
-        description.text = NSLocalizedString("ability-description-title", comment: "")
-        description.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        description.numberOfLines = 0
+        description.font = UIFont.systemFont(ofSize: 14)
         description.textColor = .black
-        description.textAlignment = .center
+        description.textAlignment = .natural
         description.translatesAutoresizingMaskIntoConstraints = false
         return description
     }()
     
+    private func bindViews() {
+        viewModel?
+            .descriptionsDriver
+            .asObservable()
+            .subscribe(onNext: { [weak self] description in
+                self?.abilityDescription.text = description
+            }).disposed(by: disposeBag)
+    }
 }

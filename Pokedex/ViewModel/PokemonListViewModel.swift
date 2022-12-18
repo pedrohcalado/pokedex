@@ -54,7 +54,7 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
         return isLoadingRelay.asDriver(onErrorJustReturn: false)
     }
     
-    init(coordinator: RootCoordinator?, listLoader: PokemonListLoader, detailsLoader: PokemonDetailsLoader) {
+    init(coordinator: RootCoordinator, listLoader: PokemonListLoader, detailsLoader: PokemonDetailsLoader) {
         self.coordinator = coordinator
         self.listLoader = listLoader
         self.detailsLoader = detailsLoader

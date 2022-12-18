@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		65745E31294F60370005F1AB /* AbilityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E30294F60370005F1AB /* AbilityDescriptionView.swift */; };
 		65745E32294F60370005F1AB /* AbilityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E30294F60370005F1AB /* AbilityDescriptionView.swift */; };
+		65745E34294F66EC0005F1AB /* AbilityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E33294F66EC0005F1AB /* AbilityItem.swift */; };
+		65745E35294F66EC0005F1AB /* AbilityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E33294F66EC0005F1AB /* AbilityItem.swift */; };
+		65745E37294F67160005F1AB /* AbilityDescriptionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E36294F67160005F1AB /* AbilityDescriptionLoader.swift */; };
+		65745E38294F67160005F1AB /* AbilityDescriptionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E36294F67160005F1AB /* AbilityDescriptionLoader.swift */; };
+		65745E3B294F686E0005F1AB /* RemoteAbilitiesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E3A294F686E0005F1AB /* RemoteAbilitiesLoader.swift */; };
+		65745E3C294F686E0005F1AB /* RemoteAbilitiesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E3A294F686E0005F1AB /* RemoteAbilitiesLoader.swift */; };
+		65745E3E294F69530005F1AB /* AbilitiesDescriptionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E3D294F69530005F1AB /* AbilitiesDescriptionMapper.swift */; };
+		65745E3F294F69530005F1AB /* AbilitiesDescriptionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E3D294F69530005F1AB /* AbilitiesDescriptionMapper.swift */; };
+		65745E41294F69900005F1AB /* RemoteAbilityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E40294F69900005F1AB /* RemoteAbilityItem.swift */; };
+		65745E42294F69900005F1AB /* RemoteAbilityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E40294F69900005F1AB /* RemoteAbilityItem.swift */; };
+		65745E44294F73280005F1AB /* AbilityDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E43294F73280005F1AB /* AbilityDescriptionViewModel.swift */; };
+		65745E45294F73280005F1AB /* AbilityDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E43294F73280005F1AB /* AbilityDescriptionViewModel.swift */; };
 		65B7FD75294A0BAE0052F601 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD74294A0BAE0052F601 /* AppDelegate.swift */; };
 		65B7FD77294A0BAE0052F601 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */; };
 		65B7FD7E294A0BB20052F601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B7FD7D294A0BB20052F601 /* Assets.xcassets */; };
@@ -91,6 +103,12 @@
 
 /* Begin PBXFileReference section */
 		65745E30294F60370005F1AB /* AbilityDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDescriptionView.swift; sourceTree = "<group>"; };
+		65745E33294F66EC0005F1AB /* AbilityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityItem.swift; sourceTree = "<group>"; };
+		65745E36294F67160005F1AB /* AbilityDescriptionLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDescriptionLoader.swift; sourceTree = "<group>"; };
+		65745E3A294F686E0005F1AB /* RemoteAbilitiesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAbilitiesLoader.swift; sourceTree = "<group>"; };
+		65745E3D294F69530005F1AB /* AbilitiesDescriptionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesDescriptionMapper.swift; sourceTree = "<group>"; };
+		65745E40294F69900005F1AB /* RemoteAbilityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAbilityItem.swift; sourceTree = "<group>"; };
+		65745E43294F73280005F1AB /* AbilityDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDescriptionViewModel.swift; sourceTree = "<group>"; };
 		65B7FD71294A0BAE0052F601 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B7FD74294A0BAE0052F601 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +176,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65745E39294F673F0005F1AB /* Abilities */ = {
+			isa = PBXGroup;
+			children = (
+				65745E3A294F686E0005F1AB /* RemoteAbilitiesLoader.swift */,
+				65745E3D294F69530005F1AB /* AbilitiesDescriptionMapper.swift */,
+				65745E40294F69900005F1AB /* RemoteAbilityItem.swift */,
+			);
+			path = Abilities;
+			sourceTree = "<group>";
+		};
 		65B7FD68294A0BAE0052F601 = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +259,7 @@
 			children = (
 				65B7FDE3294B4DE10052F601 /* PokemonListViewModel.swift */,
 				65B7FE17294D37DF0052F601 /* PokemonDetailsViewModel.swift */,
+				65745E43294F73280005F1AB /* AbilityDescriptionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,6 +332,7 @@
 		65B7FE08294CC7030052F601 /* PokemonDetails */ = {
 			isa = PBXGroup;
 			children = (
+				65745E39294F673F0005F1AB /* Abilities */,
 				65B7FE09294CC73C0052F601 /* RemotePokemonDetailsLoader.swift */,
 				65B7FE0E294CCAB40052F601 /* RemotePokemonDetails.swift */,
 				65B7FE11294CCB410052F601 /* PokemonDetailsMapper.swift */,
@@ -315,6 +345,8 @@
 			children = (
 				65B7FE04294CC6270052F601 /* PokemonDetailsItem.swift */,
 				65B7FE01294CC4830052F601 /* PokemonDetailsLoader.swift */,
+				65745E33294F66EC0005F1AB /* AbilityItem.swift */,
+				65745E36294F67160005F1AB /* AbilityDescriptionLoader.swift */,
 			);
 			path = PokemonDetails;
 			sourceTree = "<group>";
@@ -480,11 +512,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65745E37294F67160005F1AB /* AbilityDescriptionLoader.swift in Sources */,
 				65B7FDBB294A6B340052F601 /* PokemonListItem.swift in Sources */,
 				65B8F95F294F2657006FA18C /* PokemonAbilitiesView.swift in Sources */,
 				65B7FE12294CCB410052F601 /* PokemonDetailsMapper.swift in Sources */,
 				65B7FDC2294B3CDF0052F601 /* AlamofireHTTPClient.swift in Sources */,
 				65B7FDBF294A6F220052F601 /* PokemonListLoader.swift in Sources */,
+				65745E44294F73280005F1AB /* AbilityDescriptionViewModel.swift in Sources */,
 				65B7FD75294A0BAE0052F601 /* AppDelegate.swift in Sources */,
 				65B7FDE4294B4DE10052F601 /* PokemonListViewModel.swift in Sources */,
 				65B7FDE8294B4E870052F601 /* RootCoordinator.swift in Sources */,
@@ -492,8 +526,10 @@
 				65B7FDF4294B700E0052F601 /* PokemonListCell.swift in Sources */,
 				65B7FDCB294B3DCA0052F601 /* PokemonListMapper.swift in Sources */,
 				65745E31294F60370005F1AB /* AbilityDescriptionView.swift in Sources */,
+				65745E3E294F69530005F1AB /* AbilitiesDescriptionMapper.swift in Sources */,
 				65B7FDC5294B3D1F0052F601 /* Endpoints.swift in Sources */,
 				65B7FE15294D373D0052F601 /* PokemonDetailsViewController.swift in Sources */,
+				65745E3B294F686E0005F1AB /* RemoteAbilitiesLoader.swift in Sources */,
 				65B7FE05294CC6270052F601 /* PokemonDetailsItem.swift in Sources */,
 				65B7FE18294D37DF0052F601 /* PokemonDetailsViewModel.swift in Sources */,
 				65B7FDC8294B3D940052F601 /* RemotePokemonItem.swift in Sources */,
@@ -504,7 +540,9 @@
 				65B8F95C294F1685006FA18C /* PokemonStatsView.swift in Sources */,
 				65B7FDCE294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
 				65B7FDD3294B47BA0052F601 /* PokemonListViewController.swift in Sources */,
+				65745E41294F69900005F1AB /* RemoteAbilityItem.swift in Sources */,
 				65B7FE1D294DCEB60052F601 /* CarouselCell.swift in Sources */,
+				65745E34294F66EC0005F1AB /* AbilityItem.swift in Sources */,
 				65B7FE20294DCF230052F601 /* CarouselView.swift in Sources */,
 				65B7FD77294A0BAE0052F601 /* SceneDelegate.swift in Sources */,
 			);
@@ -518,6 +556,7 @@
 				65B7FE06294CC6270052F601 /* PokemonDetailsItem.swift in Sources */,
 				65B7FDBC294A6B340052F601 /* PokemonListItem.swift in Sources */,
 				65B7FDB5294A4FAC0052F601 /* HTTPClient.swift in Sources */,
+				65745E3F294F69530005F1AB /* AbilitiesDescriptionMapper.swift in Sources */,
 				65B7FDFC294BA5900052F601 /* ViewCode.swift in Sources */,
 				65B8F960294F2658006FA18C /* PokemonAbilitiesView.swift in Sources */,
 				65B7FDCF294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
@@ -527,14 +566,19 @@
 				65B7FE03294CC4830052F601 /* PokemonDetailsLoader.swift in Sources */,
 				65B7FDC0294A6F220052F601 /* PokemonListLoader.swift in Sources */,
 				65B7FE16294D373D0052F601 /* PokemonDetailsViewController.swift in Sources */,
+				65745E45294F73280005F1AB /* AbilityDescriptionViewModel.swift in Sources */,
 				65B8F95D294F1685006FA18C /* PokemonStatsView.swift in Sources */,
+				65745E38294F67160005F1AB /* AbilityDescriptionLoader.swift in Sources */,
+				65745E3C294F686E0005F1AB /* RemoteAbilitiesLoader.swift in Sources */,
 				65B7FE10294CCAB40052F601 /* RemotePokemonDetails.swift in Sources */,
 				65B7FE1E294DCEB60052F601 /* CarouselCell.swift in Sources */,
 				65B7FDCC294B3DCA0052F601 /* PokemonListMapper.swift in Sources */,
 				65745E32294F60370005F1AB /* AbilityDescriptionView.swift in Sources */,
 				65B7FD8C294A0BB30052F601 /* PokedexListEndToEndTests.swift in Sources */,
 				65B7FDC6294B3D1F0052F601 /* Endpoints.swift in Sources */,
+				65745E42294F69900005F1AB /* RemoteAbilityItem.swift in Sources */,
 				65B7FE19294D37DF0052F601 /* PokemonDetailsViewModel.swift in Sources */,
+				65745E35294F66EC0005F1AB /* AbilityItem.swift in Sources */,
 				65B7FDE5294B4DE10052F601 /* PokemonListViewModel.swift in Sources */,
 				65B7FDD4294B47BA0052F601 /* PokemonListViewController.swift in Sources */,
 				65B7FDC3294B3CE00052F601 /* AlamofireHTTPClient.swift in Sources */,

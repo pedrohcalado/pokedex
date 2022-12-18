@@ -148,11 +148,6 @@ extension PokemonDetailsViewController {
 
 extension PokemonDetailsViewController: PokemonAbilitiesDelegate {
     func showAbilityDescription(_ abilityId: Int) {
-        guard let viewModel = viewModel else { return }
-        let abilityDescriptionVC = AbilityDescriptionViewController(abilityId: abilityId, viewModel: viewModel)
-        if let sheet = abilityDescriptionVC.sheetPresentationController {
-            sheet.detents = [.medium()]
-        }
-        present(abilityDescriptionVC, animated: true)
+        viewModel?.showAbilityDescription(abilityId)
     }
 }
