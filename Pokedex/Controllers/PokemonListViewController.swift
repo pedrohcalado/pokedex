@@ -162,7 +162,7 @@ extension PokemonListViewController {
 extension PokemonListViewController {
     private func showAlert() {
         let alert = UIAlertController(
-            title: NSLocalizedString("error-message", comment: ""),
+            title: NSLocalizedString("list-error-message", comment: ""),
             message: NSLocalizedString("try-again-message", comment: ""),
             preferredStyle: .alert)
         let okAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .cancel)
