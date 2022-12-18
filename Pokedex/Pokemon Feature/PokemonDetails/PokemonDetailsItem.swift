@@ -12,12 +12,23 @@ struct PokemonDetailsItem: Codable {
     let name: String
     let images: [String?]
     let stats: [String: Int]
+    let abilities: [PokemonDetailsAbility]
     
-    init(id: Int, name: String, images: [String?], stats: [String: Int]) {
+    init(id: Int, name: String, images: [String?], stats: [String: Int], abilities: [PokemonDetailsAbility]) {
         self.id = id
         self.name = name
         self.images = images
         self.stats = stats
+        self.abilities = abilities
     }
 }
 
+struct PokemonDetailsAbility: Codable {
+    let name: String
+    let url: String
+    
+    init(name: String, url: String) {
+        self.name = name
+        self.url = url
+    }
+}

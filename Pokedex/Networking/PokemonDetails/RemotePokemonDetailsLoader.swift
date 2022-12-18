@@ -38,8 +38,9 @@ final class RemotePokemonDetailsLoader: PokemonDetailsLoader {
             let sprites = items.sprites
             let images = [sprites.backDefault, sprites.backFemale, sprites.backShiny, sprites.backShinyFemale, sprites.frontDefault, sprites.frontFemale, sprites.frontShiny, sprites.frontShinyFemale]
             let stats = items.stats.reduce(into: [String: Int]()) { $0[$1.stat.name] = $1.baseStat }
+            let abilities = items.abilities.compactMap { PokemonDetailsAbility(name: $0.ability.name, url: $0.ability.url) }
             
-            return .success(PokemonDetailsItem(id: items.id, name: items.name, images: images, stats: stats))
+            return .success(PokemonDetailsItem(id: items.id, name: items.name, images: images, stats: stats, abilities: abilities))
         } catch {
             return .failure(error)
         }
