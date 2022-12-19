@@ -50,6 +50,7 @@ final class PokemonListViewController: UIViewController {
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width/3 - 5, height: 130)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.register(PokemonListCell.self, forCellWithReuseIdentifier: PokemonListCell.identifier)
+        cv.backgroundColor = .clear
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
@@ -91,7 +92,7 @@ extension PokemonListViewController: ViewCode {
     
     func applyAdditionalChanges() {
         navigationItem.title  = NSLocalizedString("list-controller-title", comment: "")
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(red: 239/255, green: 245/255, blue: 245/255, alpha: 1)
         navigationItem.searchController = searchController
         navigationItem.rightBarButtonItem = reloadButton
     }

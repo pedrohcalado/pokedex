@@ -54,7 +54,7 @@ final class PokemonStatsView: UIView {
                 let label = UILabel()
                 label.textAlignment = .center
                 label.text = NSLocalizedString(stat, comment: "")
-                label.font = UIFont.systemFont(ofSize: 14)
+                label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()

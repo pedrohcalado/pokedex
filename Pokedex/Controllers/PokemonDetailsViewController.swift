@@ -48,6 +48,7 @@ final class PokemonDetailsViewController: UIViewController {
         let stack = UIStackView(arrangedSubviews: [varietiesView, abilitiesView, typesView, statsView])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
+        stack.spacing = 10
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -97,7 +98,7 @@ extension PokemonDetailsViewController: ViewCode {
     
     func applyAdditionalChanges() {
         navigationItem.setRightBarButton(pokemonNumber, animated: false)
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 239/255, green: 245/255, blue: 245/255, alpha: 1)
     }
     
 }
