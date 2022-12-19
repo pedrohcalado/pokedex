@@ -1,7 +1,10 @@
 # Pokedex
 
 ## Descrição
-Criar uma Pokedex utilizando a PokeAPi V2, mostrando uma tela com uma lista de Pokemons e os detalhes de cada Pokemon quando um deles é selecionado na lista.
+Criar uma Pokedex utilizando a [PokeAPi V2](https://pokeapi.co/docs/v2), mostrando uma lista de Pokemons e os detalhes de cada Pokemon quando um deles é selecionado.
+
+<img src="https://raw.githubusercontent.com/pedrohcalado/pokedex/main/.github/home.png" width="200"> <img src="https://raw.githubusercontent.com/pedrohcalado/pokedex/main/.github/pokemon_details.png" width="200"> <img src="https://raw.githubusercontent.com/pedrohcalado/pokedex/main/.github/ability_description.png" width="200"> 
+<img src="https://raw.githubusercontent.com/pedrohcalado/pokedex/main/.github/same_type_pokemons.png" width="200"> 
 
 ## Requisitos 
 ### Tela com lista de Pokemons
@@ -16,9 +19,9 @@ Criar uma Pokedex utilizando a PokeAPi V2, mostrando uma tela com uma lista de P
 - [x] Exibir suas Habilidades (Run Away, Adaptability, Synchronize etc)
 - [x] Ao tocar em uma habilidade, exibir um modal com a descrição
 - [x] Exibir seus tipos (electric, ground, water, fire etc)
-- [ ] Ao tocar em um tipo, exibir a lista dos Pokémons desse mesmo tipo
+- [x] Ao tocar em um tipo, exibir a lista dos Pokémons desse mesmo tipo
 - [ ] Exibir a cadeia de evolução do Pokémon
-- [ ] Exibir um picker que permita selecionar as variações do Pokémon (ao selecionar uma variação, o app deve carregar automaticamente os dados da variação selecionada).
+- [x] Exibir um picker que permita selecionar as variações do Pokémon (ao selecionar uma variação, o app deve carregar automaticamente os dados da variação selecionada).
 
 ## Requisitos Técnicos
 - [x] Desenvolva em Swift
@@ -37,3 +40,17 @@ Criar uma Pokedex utilizando a PokeAPi V2, mostrando uma tela com uma lista de P
 - [x] Construir layouts com Auto Layout
 - [ ] Trabalhar offline (cache dos dados)
 - [x] Utilizar RxSwift
+
+## Tecnologias e metodologias utilizadas
+- UIKit
+- Swift
+- RxSwift
+- MVVM-C
+- XCTest
+- View Code
+- Auto Layout
+- Codable
+- SDWebImage
+- Alamofire
+
+
