@@ -11,6 +11,7 @@ import RxCocoa
 
 protocol PokemonDetailsViewModelProtocol {
     func loadPokemonDetails()
+    func reloadPokemonFromPicker(with id: Int)
     func showAbilityDescription(_ abilityId: Int)
     func navigateToEquivalentPokemons(with type: PokemonDetailsType)
     func getPokemonName() -> String
@@ -20,17 +21,20 @@ protocol PokemonDetailsViewModelProtocol {
     var errorDriver: Driver<Bool> { get }
     var pokemonAbilities: Driver<[PokemonDetailsAbility]> { get }
     var pokemonTypes: Driver<[PokemonDetailsType]> { get }
+    var pokemonSpecies: Driver<[PokemonSpeciesItem]> { get }
 }
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
     private weak var coordinator: RootCoordinator?
-    private var detailsLoader: PokemonDetailsLoader?
     private var pokemonListItem: PokemonListItem?
+    private var detailsLoader: PokemonDetailsLoader?
+    private var speciesLoader: PokemonSpeciesLoader?
     
-    init(detailsLoader: PokemonDetailsLoader, pokemonListItem: PokemonListItem, coordinator: RootCoordinator) {
-        self.detailsLoader = detailsLoader
+    init(pokemonListItem: PokemonListItem, coordinator: RootCoordinator, detailsLoader: PokemonDetailsLoader, speciesLoader: PokemonSpeciesLoader) {
         self.pokemonListItem = pokemonListItem
         self.coordinator = coordinator
+        self.detailsLoader = detailsLoader
+        self.speciesLoader = speciesLoader
     }
     
     private var pokemonImagesRelay = BehaviorRelay<[String]>(value: [])
@@ -53,6 +57,11 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         return pokemonTypesRelay.asDriver(onErrorJustReturn: [])
     }
     
+    private var pokemonSpeciesRelay = BehaviorRelay<[PokemonSpeciesItem]>(value: [])
+    var pokemonSpecies: Driver<[PokemonSpeciesItem]> {
+        return pokemonSpeciesRelay.asDriver(onErrorJustReturn: [])
+    }
+    
     private var errorRelay = BehaviorRelay<Bool>(value: false)
     var errorDriver: Driver<Bool> {
         return errorRelay.asDriver(onErrorJustReturn: false)
@@ -60,6 +69,31 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
     
     func loadPokemonDetails() {
         guard let id = pokemonListItem?.id else { return }
+        
+        detailsLoader?.getPokemonDetails(by: String(id)) { [weak self] result in
+            switch result {
+            case let .success(pokemon):
+                guard let self = self else { return }
+                self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
+                self.pokemonStatsRelay.accept(pokemon.stats)
+                self.pokemonAbilitiesRelay.accept(pokemon.abilities)
+                self.pokemonTypesRelay.accept(pokemon.types)
+            case .failure:
+                self?.errorRelay.accept(true)
+            }
+        }
+        
+        speciesLoader?.getPokemonVarieties(by: id) { [weak self] result in
+            switch result {
+            case let .success(speciesList):
+                self?.pokemonSpeciesRelay.accept(speciesList)
+            case .failure:
+                self?.errorRelay.accept(true)
+            }
+        }
+    }
+    
+    func reloadPokemonFromPicker(with id: Int) {
         detailsLoader?.getPokemonDetails(by: String(id)) { [weak self] result in
             switch result {
             case let .success(pokemon):
@@ -89,6 +123,10 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
     func getPokemonNumber() -> String {
         guard let id = pokemonListItem?.id else { return "" }
         return "#\(id)"
+    }
+    
+    func getPokemonSpeciesDriver() -> Driver<[PokemonSpeciesItem]> {
+        return pokemonSpecies
     }
     
     private func imagesList(from images: [String?]) -> [String] {
