@@ -76,9 +76,12 @@ final class EquivalentPokemonsViewModel: EquivalentPokemonsViewModelProtocol {
     }
     
     func loadPokemonsOnScrolling() {
-        startIndex = offset
-        offset += startIndex
-        setPokemonsToLoad(from: startIndex, to: offset)
+        if endIndex < pokemons.count {
+            let doubledEndIndex = endIndex * 2
+            startIndex = endIndex
+            endIndex = doubledEndIndex < pokemons.count ? doubledEndIndex : pokemons.count - 1
+            setPokemonsToLoad(from: startIndex, to: endIndex)
+        }
     }
     
     private func setPokemonsToLoad(from startIndex: Int, to endIndex: Int) {
@@ -90,6 +93,6 @@ final class EquivalentPokemonsViewModel: EquivalentPokemonsViewModelProtocol {
         loadedPokemons = []
         pokemons = []
         startIndex = 0
-        offset = 20
+        endIndex = 20
     }
 }
