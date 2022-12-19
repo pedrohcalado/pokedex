@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 
 protocol PokemonTypesDelegate {
-    func showPokemons(with typeId: Int)
+    func showPokemons(with type: PokemonDetailsType)
 }
 
 final class PokemonTypesView: UIView {
@@ -67,18 +67,18 @@ final class PokemonTypesView: UIView {
                 return button
             }()
             
-            bindButton(typeButton, typeId: type.id)
+            bindButton(typeButton, type: type)
             
             typesStackView.addArrangedSubview(typeButton)
         }
     }
     
-    private func bindButton(_ button: UIButton, typeId: Int) {
+    private func bindButton(_ button: UIButton, type: PokemonDetailsType) {
         button
             .rx
             .tap
             .subscribe(onNext: { [weak self] _ in
-                self?.delegate?.showPokemons(with: typeId)
+                self?.delegate?.showPokemons(with: type)
             }).disposed(by: disposeBag)
     }
 }

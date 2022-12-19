@@ -9,6 +9,6 @@ import Foundation
 
 protocol RootCoordinator: AnyObject {
     func navigateToDetails(with pokemon: PokemonListItem)
-    func navigateToEquivalentPokemons(with typeId: Int)
+    func navigateToEquivalentPokemons(with type: PokemonDetailsType)
     func showAbilityDescription(_ id: Int)
 }

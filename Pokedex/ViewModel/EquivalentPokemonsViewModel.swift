@@ -15,13 +15,14 @@ protocol EquivalentPokemonsViewModelProtocol {
     var pokemonsList: Driver<[PokemonListItem]> { get }
     var errorDriver: Driver<Bool> { get }
     var isLoadingDriver: Driver<Bool> { get }
+    var typeNameDriver: Driver<String> { get }
 }
 
 final class EquivalentPokemonsViewModel: EquivalentPokemonsViewModelProtocol {
     private var listLoader: EquivalentPokemonsLoader?
     
     private var startIndex = 0
-    private var offset = 20
+    private var endIndex = 20
     
     private var pokemons: [PokemonListItem] = []
     
@@ -42,25 +43,31 @@ final class EquivalentPokemonsViewModel: EquivalentPokemonsViewModelProtocol {
         return isLoadingRelay.asDriver(onErrorJustReturn: false)
     }
     
-    private var typeId: Int?
+    private var typeNameRelay = BehaviorRelay<String>(value: "")
+    var typeNameDriver: Driver<String> {
+        return typeNameRelay.asDriver(onErrorJustReturn: "")
+    }
     
-    init(typeId: Int, listLoader: EquivalentPokemonsLoader) {
+    private var typeModel: PokemonDetailsType?
+    
+    init(type: PokemonDetailsType, listLoader: EquivalentPokemonsLoader) {
         self.listLoader = listLoader
-        self.typeId = typeId
+        self.typeModel = type
     }
     
     func loadPokemons() {
         resetConfig()
         isLoadingRelay.accept(true)
+        typeNameRelay.accept(typeModel?.name ?? NSLocalizedString("list-controller-title", comment: ""))
         
-        guard let typeId = typeId else { return }
+        guard let typeId = typeModel?.id else { return }
         
         listLoader?.getEquivalentPokemons(by: typeId) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(pokemons):
                 self.pokemons.append(contentsOf: pokemons)
-                self.setPokemonsToLoad(from: self.startIndex, to: self.offset)
+                self.setPokemonsToLoad(from: self.startIndex, to: self.endIndex)
             case .failure:
                 self.errorRelay.accept(true)
             }

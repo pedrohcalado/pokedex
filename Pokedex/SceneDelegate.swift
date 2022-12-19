@@ -70,10 +70,10 @@ extension SceneDelegate: RootCoordinator {
         navigation?.pushViewController(viewController, animated: false)
     }
     
-    func navigateToEquivalentPokemons(with typeId: Int) {
+    func navigateToEquivalentPokemons(with type: PokemonDetailsType) {
         let client = AlamofireHTTPClient()
         let loader = RemoteEquivalentPokemonsLoader(client: client)
-        let viewModel = EquivalentPokemonsViewModel(typeId: typeId, listLoader: loader)
+        let viewModel = EquivalentPokemonsViewModel(type: type, listLoader: loader)
         let viewController = EquivalentPokemonViewController(viewModel: viewModel)
         navigation?.pushViewController(viewController, animated: false)
     }

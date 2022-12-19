@@ -83,7 +83,6 @@ extension EquivalentPokemonViewController: ViewCode {
     }
     
     func applyAdditionalChanges() {
-        navigationItem.title  = NSLocalizedString("list-controller-title", comment: "")
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = reloadButton
     }
@@ -122,6 +121,13 @@ extension EquivalentPokemonViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 self?.viewModel?.loadPokemons()
+            }).disposed(by: disposeBag)
+        
+        viewModel?
+            .typeNameDriver
+            .asObservable()
+            .subscribe(onNext: { [weak self] typeName in
+                self?.navigationItem.title = typeName
             }).disposed(by: disposeBag)
     }
 }

@@ -163,7 +163,7 @@ extension PokemonDetailsViewController: PokemonAbilitiesDelegate {
 }
 
 extension PokemonDetailsViewController: PokemonTypesDelegate {
-    func showPokemons(with typeId: Int) {
-        viewModel?.navigateToEquivalentPokemons(with: typeId)
+    func showPokemons(with type: PokemonDetailsType) {
+        viewModel?.navigateToEquivalentPokemons(with: type)
     }
 }
