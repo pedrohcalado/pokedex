@@ -54,6 +54,7 @@ final class PokemonAbilitiesView: UIView {
     }()
     
     func setAbilities(to abilities: [PokemonDetailsAbility]) {
+        abilitiesStackView.removeAllArrangedSubviews()
         abilities.forEach { ability in
             
             let abilityButton: UIButton = {

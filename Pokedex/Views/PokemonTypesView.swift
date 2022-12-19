@@ -56,6 +56,7 @@ final class PokemonTypesView: UIView {
     }()
     
     func setTypes(to types: [PokemonDetailsType]) {
+        typesStackView.removeAllArrangedSubviews()
         types.forEach { type in
             
             let typeButton: UIButton = {

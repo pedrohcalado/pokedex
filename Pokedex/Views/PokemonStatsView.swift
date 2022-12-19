@@ -44,6 +44,7 @@ final class PokemonStatsView: UIView {
     }()
     
     func setStats(to stats: [String: Int]) {
+        statsValuesStackView.removeAllArrangedSubviews()
         stats.forEach { stat, value in
             guard !stat.isEmpty else { return }
             
