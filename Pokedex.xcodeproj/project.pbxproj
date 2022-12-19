@@ -45,6 +45,10 @@
 		65745E6C295083640005F1AB /* RemotePokemonSpeciesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E6A295083640005F1AB /* RemotePokemonSpeciesLoader.swift */; };
 		65745E6E295085DC0005F1AB /* PokemonSpeciesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E6D295085DC0005F1AB /* PokemonSpeciesMapper.swift */; };
 		65745E6F295085DD0005F1AB /* PokemonSpeciesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E6D295085DC0005F1AB /* PokemonSpeciesMapper.swift */; };
+		65745E7129508F940005F1AB /* PokemonVarietiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E7029508F940005F1AB /* PokemonVarietiesView.swift */; };
+		65745E7229508F940005F1AB /* PokemonVarietiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E7029508F940005F1AB /* PokemonVarietiesView.swift */; };
+		65745E752950A57F0005F1AB /* UIStackView+RemoveArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E742950A57E0005F1AB /* UIStackView+RemoveArrangedSubviews.swift */; };
+		65745E762950A57F0005F1AB /* UIStackView+RemoveArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E742950A57E0005F1AB /* UIStackView+RemoveArrangedSubviews.swift */; };
 		65B7FD75294A0BAE0052F601 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD74294A0BAE0052F601 /* AppDelegate.swift */; };
 		65B7FD77294A0BAE0052F601 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */; };
 		65B7FD7E294A0BB20052F601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B7FD7D294A0BB20052F601 /* Assets.xcassets */; };
@@ -145,6 +149,8 @@
 		65745E67295082B90005F1AB /* PokemonSpeciesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpeciesLoader.swift; sourceTree = "<group>"; };
 		65745E6A295083640005F1AB /* RemotePokemonSpeciesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePokemonSpeciesLoader.swift; sourceTree = "<group>"; };
 		65745E6D295085DC0005F1AB /* PokemonSpeciesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpeciesMapper.swift; sourceTree = "<group>"; };
+		65745E7029508F940005F1AB /* PokemonVarietiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonVarietiesView.swift; sourceTree = "<group>"; };
+		65745E742950A57E0005F1AB /* UIStackView+RemoveArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveArrangedSubviews.swift"; sourceTree = "<group>"; };
 		65B7FD71294A0BAE0052F601 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B7FD74294A0BAE0052F601 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -248,6 +254,14 @@
 				65745E6D295085DC0005F1AB /* PokemonSpeciesMapper.swift */,
 			);
 			path = Varieties;
+			sourceTree = "<group>";
+		};
+		65745E732950A51B0005F1AB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				65745E742950A57E0005F1AB /* UIStackView+RemoveArrangedSubviews.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		65B7FD68294A0BAE0052F601 = {
@@ -366,6 +380,7 @@
 				65B8F95E294F2657006FA18C /* PokemonAbilitiesView.swift */,
 				65745E30294F60370005F1AB /* AbilityDescriptionView.swift */,
 				65745E46294F94250005F1AB /* PokemonTypesView.swift */,
+				65745E7029508F940005F1AB /* PokemonVarietiesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +388,7 @@
 		65B7FDF9294BA48E0052F601 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				65745E732950A51B0005F1AB /* Extensions */,
 				65B7FDFA294BA5900052F601 /* ViewCode.swift */,
 			);
 			path = Commons;
@@ -587,8 +603,10 @@
 				65745E37294F67160005F1AB /* AbilityDescriptionLoader.swift in Sources */,
 				65B7FDBB294A6B340052F601 /* PokemonListItem.swift in Sources */,
 				65745E58294FAFE70005F1AB /* EquivalentPokemonsMapper.swift in Sources */,
+				65745E7129508F940005F1AB /* PokemonVarietiesView.swift in Sources */,
 				65745E65295082380005F1AB /* PokemonSpeciesItem.swift in Sources */,
 				65B8F95F294F2657006FA18C /* PokemonAbilitiesView.swift in Sources */,
+				65745E752950A57F0005F1AB /* UIStackView+RemoveArrangedSubviews.swift in Sources */,
 				65B7FE12294CCB410052F601 /* PokemonDetailsMapper.swift in Sources */,
 				65B7FDC2294B3CDF0052F601 /* AlamofireHTTPClient.swift in Sources */,
 				65B7FDBF294A6F220052F601 /* PokemonListLoader.swift in Sources */,
@@ -637,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65745E6C295083640005F1AB /* RemotePokemonSpeciesLoader.swift in Sources */,
+				65745E762950A57F0005F1AB /* UIStackView+RemoveArrangedSubviews.swift in Sources */,
 				65B7FDC9294B3D940052F601 /* RemotePokemonItem.swift in Sources */,
 				65B7FE06294CC6270052F601 /* PokemonDetailsItem.swift in Sources */,
 				65B7FDBC294A6B340052F601 /* PokemonListItem.swift in Sources */,
@@ -647,6 +666,7 @@
 				65B7FDCF294B3DEE0052F601 /* RemotePokemonListLoader.swift in Sources */,
 				65B7FE13294CCB420052F601 /* PokemonDetailsMapper.swift in Sources */,
 				65745E63295081620005F1AB /* RemotePokemonSpeciesItem.swift in Sources */,
+				65745E7229508F940005F1AB /* PokemonVarietiesView.swift in Sources */,
 				65745E4C294FA8450005F1AB /* RemoteEquivalentPokemonsItem.swift in Sources */,
 				65B7FDF5294B700E0052F601 /* PokemonListCell.swift in Sources */,
 				65745E48294F94250005F1AB /* PokemonTypesView.swift in Sources */,

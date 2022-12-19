@@ -46,9 +46,9 @@ final class PokemonDetailsViewController: UIViewController {
     }()
     
     private lazy var baseStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [abilitiesView, typesView, statsView])
+        let stack = UIStackView(arrangedSubviews: [varietiesView, abilitiesView, typesView, statsView])
         stack.axis = .vertical
-        stack.distribution = .fillProportionally
+        stack.distribution = .fillEqually
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -66,6 +66,11 @@ final class PokemonDetailsViewController: UIViewController {
     private lazy var typesView: PokemonTypesView = {
         let typesView = PokemonTypesView(delegate: self)
         return typesView
+    }()
+    
+    private lazy var varietiesView: PokemonVarietiesView = {
+        let varietiesView = PokemonVarietiesView(pokemonVarieties: [], delegate: self)
+        return varietiesView
     }()
     
 }
@@ -138,6 +143,7 @@ extension PokemonDetailsViewController {
                     self?.showAlert()
                 }
             }).disposed(by: disposeBag)
+
     }
 }
 
@@ -165,5 +171,18 @@ extension PokemonDetailsViewController: PokemonAbilitiesDelegate {
 extension PokemonDetailsViewController: PokemonTypesDelegate {
     func showPokemons(with type: PokemonDetailsType) {
         viewModel?.navigateToEquivalentPokemons(with: type)
+    }
+}
+
+extension PokemonDetailsViewController: PokemonVaietiesViewDelegate {
+    func reloadDetails(with pokemonId: Int) {
+        viewModel?.reloadPokemonFromPicker(with: pokemonId)
+    }
+    
+    func getPokemonSpeciesDriver() -> Driver<[PokemonSpeciesItem]> {
+        guard let viewModel = viewModel else {
+            return BehaviorRelay<[PokemonSpeciesItem]>(value: []).asDriver()
+        }
+        return viewModel.pokemonSpecies
     }
 }
