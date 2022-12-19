@@ -14,4 +14,5 @@ protocol HTTPClient {
     func getPokemonDetails(by text: String, completion: @escaping (Result) -> Void)
     func getAbilityDescription(by id: Int, completion: @escaping (Result) -> Void)
     func getEquivalentPokemons(by typeId: Int, completion: @escaping (Result) -> Void)
+    func getPokemonSpecies(by pokemonId: Int, completion: @escaping (Result) -> Void)
 }

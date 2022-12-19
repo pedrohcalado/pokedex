@@ -51,4 +51,10 @@ struct Endpoints {
             queryItems: nil)
     }
     
+    static func pokemonSpecies(by pokemonId: Int) -> Endpoints {
+        return Endpoints(
+            path: "pokemon-species/\(pokemonId)",
+            queryItems: nil)
+    }
+    
 }
