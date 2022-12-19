@@ -48,7 +48,7 @@ final class PokemonDetailsViewController: UIViewController {
     private lazy var baseStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [varietiesView, abilitiesView, typesView, statsView])
         stack.axis = .vertical
-        stack.distribution = .fillEqually
+        stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -86,10 +86,9 @@ extension PokemonDetailsViewController: ViewCode {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             carouselView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            carouselView.bottomAnchor.constraint(equalTo: baseStackView.topAnchor),
+            carouselView.bottomAnchor.constraint(equalTo: baseStackView.topAnchor, constant: 20),
             carouselView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             carouselView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            carouselView.heightAnchor.constraint(equalToConstant: 300),
             
             baseStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             baseStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

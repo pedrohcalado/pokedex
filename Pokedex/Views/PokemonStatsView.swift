@@ -22,6 +22,8 @@ final class PokemonStatsView: UIView {
     private lazy var baseStatsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [statsSectionTitle, statsValuesStackView])
         stack.axis = .vertical
+        stack.distribution = .fill
+        stack.spacing = 5
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -30,14 +32,14 @@ final class PokemonStatsView: UIView {
         let title = UILabel()
         title.text = NSLocalizedString("stats-title", comment: "")
         title.textAlignment = .center
-        title.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
     
     private lazy var statsValuesStackView: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .vertical
+        stack.axis = .horizontal
         stack.distribution = .equalSpacing
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -86,8 +88,10 @@ extension PokemonStatsView: ViewCode {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            statsValuesStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            statsValuesStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            baseStatsStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            baseStatsStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            baseStatsStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            baseStatsStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5),
         ])
     }
     

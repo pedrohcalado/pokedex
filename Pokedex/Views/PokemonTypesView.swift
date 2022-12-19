@@ -30,10 +30,12 @@ final class PokemonTypesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private lazy var baseStatsStackView: UIStackView = {
+    private lazy var baseTypesStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [typesSectionTitle, typesStackView])
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.spacing = 5
+        stack.distribution = .fill
         return stack
     }()
     
@@ -41,7 +43,7 @@ final class PokemonTypesView: UIView {
         let title = UILabel()
         title.text = NSLocalizedString("types-title", comment: "")
         title.textAlignment = .center
-        title.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -86,13 +88,15 @@ final class PokemonTypesView: UIView {
 
 extension PokemonTypesView: ViewCode {
     func buildHierarchy() {
-        addSubview(baseStatsStackView)
+        addSubview(baseTypesStackView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            typesStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            typesStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            baseTypesStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            baseTypesStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            baseTypesStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            baseTypesStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     

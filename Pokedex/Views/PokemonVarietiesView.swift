@@ -33,6 +33,22 @@ final class PokemonVarietiesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var baseVarietiesStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [picker])
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var varietiesSectionTitle: UILabel = {
+        let title = UILabel()
+        title.text = NSLocalizedString("varieties-title", comment: "")
+        title.textAlignment = .center
+        title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        return title
+    }()
+    
     private lazy var picker: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -60,15 +76,15 @@ final class PokemonVarietiesView: UIView {
 
 extension PokemonVarietiesView: ViewCode {
     func buildHierarchy() {
-        addSubview(picker)
+        addSubview(baseVarietiesStackView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            picker.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            picker.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            picker.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            picker.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            baseVarietiesStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            baseVarietiesStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            baseVarietiesStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            baseVarietiesStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
         
     }
