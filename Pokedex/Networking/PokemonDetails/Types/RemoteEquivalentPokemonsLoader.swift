@@ -36,7 +36,7 @@ final class RemoteEquivalentPokemonsLoader: EquivalentPokemonsLoader {
         do {
             let items = try EquivalentPokemonsMapper.map(data, from: response)
             
-            let pokemons = items.pokemons.compactMap { EquivalentPokemonsItem(name: $0.pokemon.name, url: $0.pokemon.url) }
+            let pokemons = items.pokemons.compactMap { PokemonListItem(name: $0.pokemon.name, url: $0.pokemon.url) }
             
             return .success(pokemons)
         } catch {

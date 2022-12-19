@@ -12,7 +12,7 @@ import RxCocoa
 protocol EquivalentPokemonsViewModelProtocol {
     func loadPokemons()
     func loadPokemonsOnScrolling()
-    var pokemonsList: Driver<[EquivalentPokemonsItem]> { get }
+    var pokemonsList: Driver<[PokemonListItem]> { get }
     var errorDriver: Driver<Bool> { get }
     var isLoadingDriver: Driver<Bool> { get }
 }
@@ -23,12 +23,12 @@ final class EquivalentPokemonsViewModel: EquivalentPokemonsViewModelProtocol {
     private var startIndex = 0
     private var offset = 20
     
-    private var pokemons: [EquivalentPokemonsItem] = []
+    private var pokemons: [PokemonListItem] = []
     
-    private var loadedPokemons: [EquivalentPokemonsItem] = []
+    private var loadedPokemons: [PokemonListItem] = []
     
-    private var pokemonsRelay = BehaviorRelay<[EquivalentPokemonsItem]>(value: [])
-    var pokemonsList: Driver<[EquivalentPokemonsItem]> {
+    private var pokemonsRelay = BehaviorRelay<[PokemonListItem]>(value: [])
+    var pokemonsList: Driver<[PokemonListItem]> {
         return pokemonsRelay.asDriver(onErrorJustReturn: [])
     }
     
@@ -50,7 +50,7 @@ final class EquivalentPokemonsViewModel: EquivalentPokemonsViewModelProtocol {
     }
     
     func loadPokemons() {
-        loadedPokemons = []
+        resetConfig()
         isLoadingRelay.accept(true)
         
         guard let typeId = typeId else { return }
@@ -77,5 +77,12 @@ final class EquivalentPokemonsViewModel: EquivalentPokemonsViewModelProtocol {
     private func setPokemonsToLoad(from startIndex: Int, to endIndex: Int) {
         loadedPokemons.append(contentsOf: pokemons[startIndex..<endIndex])
         pokemonsRelay.accept(loadedPokemons)
+    }
+    
+    private func resetConfig() {
+        loadedPokemons = []
+        pokemons = []
+        startIndex = 0
+        offset = 20
     }
 }

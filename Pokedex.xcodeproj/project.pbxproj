@@ -35,6 +35,8 @@
 		65745E59294FAFE70005F1AB /* EquivalentPokemonsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E57294FAFE70005F1AB /* EquivalentPokemonsMapper.swift */; };
 		65745E5B294FB22F0005F1AB /* EquivalentPokemonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E5A294FB22F0005F1AB /* EquivalentPokemonsViewModel.swift */; };
 		65745E5C294FB22F0005F1AB /* EquivalentPokemonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E5A294FB22F0005F1AB /* EquivalentPokemonsViewModel.swift */; };
+		65745E5E294FEB390005F1AB /* EquivalentPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E5D294FEB390005F1AB /* EquivalentPokemonViewController.swift */; };
+		65745E5F294FEB390005F1AB /* EquivalentPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65745E5D294FEB390005F1AB /* EquivalentPokemonViewController.swift */; };
 		65B7FD75294A0BAE0052F601 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD74294A0BAE0052F601 /* AppDelegate.swift */; };
 		65B7FD77294A0BAE0052F601 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */; };
 		65B7FD7E294A0BB20052F601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B7FD7D294A0BB20052F601 /* Assets.xcassets */; };
@@ -130,6 +132,7 @@
 		65745E54294FAE910005F1AB /* EquivalentPokemonsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquivalentPokemonsLoader.swift; sourceTree = "<group>"; };
 		65745E57294FAFE70005F1AB /* EquivalentPokemonsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquivalentPokemonsMapper.swift; sourceTree = "<group>"; };
 		65745E5A294FB22F0005F1AB /* EquivalentPokemonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquivalentPokemonsViewModel.swift; sourceTree = "<group>"; };
+		65745E5D294FEB390005F1AB /* EquivalentPokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquivalentPokemonViewController.swift; sourceTree = "<group>"; };
 		65B7FD71294A0BAE0052F601 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B7FD74294A0BAE0052F601 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B7FD76294A0BAE0052F601 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -320,6 +323,7 @@
 			children = (
 				65B7FDD1294B47BA0052F601 /* PokemonListViewController.swift */,
 				65B7FE14294D373C0052F601 /* PokemonDetailsViewController.swift */,
+				65745E5D294FEB390005F1AB /* EquivalentPokemonViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -581,6 +585,7 @@
 				65B7FE05294CC6270052F601 /* PokemonDetailsItem.swift in Sources */,
 				65B7FE18294D37DF0052F601 /* PokemonDetailsViewModel.swift in Sources */,
 				65B7FDC8294B3D940052F601 /* RemotePokemonItem.swift in Sources */,
+				65745E5E294FEB390005F1AB /* EquivalentPokemonViewController.swift in Sources */,
 				65B7FE02294CC4830052F601 /* PokemonDetailsLoader.swift in Sources */,
 				65B7FDFB294BA5900052F601 /* ViewCode.swift in Sources */,
 				65B7FE0F294CCAB40052F601 /* RemotePokemonDetails.swift in Sources */,
@@ -617,6 +622,7 @@
 				65745E48294F94250005F1AB /* PokemonTypesView.swift in Sources */,
 				65B7FDE9294B4E870052F601 /* RootCoordinator.swift in Sources */,
 				65B7FE03294CC4830052F601 /* PokemonDetailsLoader.swift in Sources */,
+				65745E5F294FEB390005F1AB /* EquivalentPokemonViewController.swift in Sources */,
 				65B7FDC0294A6F220052F601 /* PokemonListLoader.swift in Sources */,
 				65B7FE16294D373D0052F601 /* PokemonDetailsViewController.swift in Sources */,
 				65745E45294F73280005F1AB /* AbilityDescriptionViewModel.swift in Sources */,

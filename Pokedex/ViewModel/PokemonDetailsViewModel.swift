@@ -12,6 +12,7 @@ import RxCocoa
 protocol PokemonDetailsViewModelProtocol {
     func loadPokemonDetails()
     func showAbilityDescription(_ abilityId: Int)
+    func navigateToEquivalentPokemons(with typeId: Int)
     func getPokemonName() -> String
     func getPokemonNumber() -> String
     var pokemonImages: Driver<[String]> { get }
@@ -75,6 +76,10 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
     
     func showAbilityDescription(_ abilityId: Int) {
         coordinator?.showAbilityDescription(abilityId)
+    }
+    
+    func navigateToEquivalentPokemons(with typeId: Int) {
+        coordinator?.navigateToEquivalentPokemons(with: typeId)
     }
     
     func getPokemonName() -> String {

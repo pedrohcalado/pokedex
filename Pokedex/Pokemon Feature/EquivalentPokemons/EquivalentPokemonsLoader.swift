@@ -8,6 +8,6 @@
 import Foundation
 
 protocol EquivalentPokemonsLoader {
-    typealias Result = Swift.Result<[EquivalentPokemonsItem], Error>
+    typealias Result = Swift.Result<[PokemonListItem], Error>
     func getEquivalentPokemons(by typeId: Int, completion: @escaping (Result) -> Void)
 }
