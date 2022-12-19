@@ -35,7 +35,6 @@ final class PokemonDetailsViewController: UIViewController {
         let button = UIBarButtonItem()
         button.isEnabled = false
         button.tintColor = .black
-        button.title = viewModel?.getPokemonNumber()
         return button
     }()
     
@@ -97,7 +96,6 @@ extension PokemonDetailsViewController: ViewCode {
     }
     
     func applyAdditionalChanges() {
-        navigationItem.title = viewModel?.getPokemonName()
         navigationItem.setRightBarButton(pokemonNumber, animated: false)
         view.backgroundColor = .white
     }
@@ -132,6 +130,20 @@ extension PokemonDetailsViewController {
             .asObservable()
             .bind(onNext: { [weak self] types in
                 self?.typesView.setTypes(to: types)
+            }).disposed(by: disposeBag)
+        
+        viewModel?
+            .pokemonIdDriver
+            .asObservable()
+            .bind(onNext: { [weak self] pokemonId in
+                self?.pokemonNumber.title = pokemonId
+            }).disposed(by: disposeBag)
+        
+        viewModel?
+            .pokemonNameDriver
+            .asObservable()
+            .bind(onNext: { [weak self] pokemonName in
+                self?.navigationItem.title = pokemonName
             }).disposed(by: disposeBag)
         
         viewModel?

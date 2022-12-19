@@ -14,14 +14,14 @@ protocol PokemonDetailsViewModelProtocol {
     func reloadPokemonFromPicker(with id: Int)
     func showAbilityDescription(_ abilityId: Int)
     func navigateToEquivalentPokemons(with type: PokemonDetailsType)
-    func getPokemonName() -> String
-    func getPokemonNumber() -> String
     var pokemonImages: Driver<[String]> { get }
     var pokemonStats: Driver<[String: Int]> { get }
     var errorDriver: Driver<Bool> { get }
     var pokemonAbilities: Driver<[PokemonDetailsAbility]> { get }
     var pokemonTypes: Driver<[PokemonDetailsType]> { get }
     var pokemonSpecies: Driver<[PokemonSpeciesItem]> { get }
+    var pokemonIdDriver: Driver<String> { get }
+    var pokemonNameDriver: Driver<String> { get }
 }
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
@@ -62,6 +62,16 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         return pokemonSpeciesRelay.asDriver(onErrorJustReturn: [])
     }
     
+    private var pokemonIdRelay = BehaviorRelay<String>(value: "")
+    var pokemonIdDriver: Driver<String> {
+        return pokemonIdRelay.asDriver(onErrorJustReturn: "")
+    }
+    
+    private var pokemonNameRelay = BehaviorRelay<String>(value: "")
+    var pokemonNameDriver: Driver<String> {
+        return pokemonNameRelay.asDriver(onErrorJustReturn: "")
+    }
+    
     private var errorRelay = BehaviorRelay<Bool>(value: false)
     var errorDriver: Driver<Bool> {
         return errorRelay.asDriver(onErrorJustReturn: false)
@@ -74,10 +84,7 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
             switch result {
             case let .success(pokemon):
                 guard let self = self else { return }
-                self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
-                self.pokemonStatsRelay.accept(pokemon.stats)
-                self.pokemonAbilitiesRelay.accept(pokemon.abilities)
-                self.pokemonTypesRelay.accept(pokemon.types)
+                self.updateRelays(with: pokemon)
             case .failure:
                 self?.errorRelay.accept(true)
             }
@@ -98,10 +105,7 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
             switch result {
             case let .success(pokemon):
                 guard let self = self else { return }
-                self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
-                self.pokemonStatsRelay.accept(pokemon.stats)
-                self.pokemonAbilitiesRelay.accept(pokemon.abilities)
-                self.pokemonTypesRelay.accept(pokemon.types)
+                self.updateRelays(with: pokemon)
             case .failure:
                 self?.errorRelay.accept(true)
             }
@@ -116,20 +120,24 @@ final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
         coordinator?.navigateToEquivalentPokemons(with: type)
     }
     
-    func getPokemonName() -> String {
-        return pokemonListItem?.name ?? ""
-    }
-    
-    func getPokemonNumber() -> String {
-        guard let id = pokemonListItem?.id else { return "" }
-        return "#\(id)"
-    }
-    
     func getPokemonSpeciesDriver() -> Driver<[PokemonSpeciesItem]> {
         return pokemonSpecies
     }
     
     private func imagesList(from images: [String?]) -> [String] {
         return images.compactMap { $0 }
+    }
+    
+    private func formattedId(_ id: Int) -> String {
+        return "#\(id)"
+    }
+    
+    private func updateRelays(with pokemon: PokemonDetailsItem) {
+        self.pokemonImagesRelay.accept(self.imagesList(from: pokemon.images))
+        self.pokemonStatsRelay.accept(pokemon.stats)
+        self.pokemonAbilitiesRelay.accept(pokemon.abilities)
+        self.pokemonTypesRelay.accept(pokemon.types)
+        self.pokemonIdRelay.accept(self.formattedId(pokemon.id))
+        self.pokemonNameRelay.accept(pokemon.name)
     }
 }
