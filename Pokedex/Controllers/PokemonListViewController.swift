@@ -21,16 +21,13 @@ final class PokemonListViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         setupView()
-        bindViews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         viewModel?.loadPokemons()
+        bindViews()
     }
     
     private lazy var searchController: UISearchController = {
