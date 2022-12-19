@@ -28,11 +28,9 @@ final class PokemonDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         bindViews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         viewModel?.loadPokemonDetails()
     }
+    
     private lazy var pokemonNumber: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.isEnabled = false
@@ -166,6 +164,6 @@ extension PokemonDetailsViewController: PokemonAbilitiesDelegate {
 
 extension PokemonDetailsViewController: PokemonTypesDelegate {
     func showPokemons(with typeId: Int) {
-
+        viewModel?.navigateToEquivalentPokemons(with: typeId)
     }
 }
